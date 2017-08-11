@@ -1,4 +1,4 @@
-function [M, Mx, My] = diffusionTerm2D(D)
+function [M, Mx, My] = diffusionTermTensor2D(D)
 % This function uses the central difference scheme to discretize a 2D
 % diffusion term in the form \grad . (D \grad \phi) where u is a face vactor
 % It also returns the x and y parts of the matrix of coefficient.
@@ -26,9 +26,11 @@ Ny = D.domain.dims(2);
 G=reshape(1:(Nx+2)*(Ny+2), Nx+2, Ny+2);
 
 DX = repmat(D.domain.cellsize.x, 1, Ny);
+DX(:,:,2) = DX;
 DY = repmat(D.domain.cellsize.y', Nx, 1);
-dx = 0.5*(DX(1:end-1,:)+DX(2:end,:));
-dy = 0.5*(DY(:,1:end-1)+DY(:,2:end));
+DY(:,:,2) = DY;
+dx = 0.5*(DX(1:end-1,:,:)+DX(2:end,:,:));
+dy = 0.5*(DY(:,1:end-1,:)+DY(:,2:end,:));
 
 % define the vectors to store the sparse matrix data
 iix = zeros(3*(Nx+2)*(Ny+2),1);	iiy = zeros(3*(Nx+2)*(Ny+2),1);
@@ -38,18 +40,27 @@ mnx = Nx*Ny;	mny = Nx*Ny;
 
 % reassign the east, west, north, and south velocity vectors for the
 % code readability
-De = D.xvalue(2:Nx+1,:,:)   %./(dx(2:Nx+1,:).*DX(2:Nx+1,:));
-Dw = D.xvalue(1:Nx,:,:)     %./(dx(1:Nx,:).*DX(2:Nx+1,:));
-Dn = D.yvalue(:,2:Ny+1,:)   %./(dy(:,2:Ny+1).*DY(:,2:Ny+1));
-Ds = D.yvalue(:,1:Ny,:)     %./(dy(:,1:Ny).*DY(:,2:Ny+1));
+De = D.xvalue(2:Nx+1,:,:)./(dx(2:Nx+1,:,:).*DX(2:Nx+1,:,:));
+Dw = D.xvalue(1:Nx,:,:)./(dx(1:Nx,:,:).*DX(2:Nx+1,:,:));
+Dn = D.yvalue(:,2:Ny+1,:)./(dy(:,2:Ny+1,:).*DY(:,2:Ny+1,:));
+Ds = D.yvalue(:,1:Ny,:)./(dy(:,1:Ny,:).*DY(:,2:Ny+1,:));
+% they should be crossed but it doesnt matter if grid is uniform
 
 % calculate the coefficients for the internal cells
-AE = reshape(De,mnx,1);
-AW = reshape(Dw,mnx,1);
-AN = reshape(Dn,mny,1);
-AS = reshape(Ds,mny,1);
-APx = reshape(-(De+Dw),mnx,1);
-APy = reshape(-(Dn+Ds),mny,1);
+% for x 11 is the diagonal. D1 = (D11, D12) es xvalue
+% for y 22 is the diagonal. D2 = (D21, D22) es yvalue
+AE1 = reshape(De(:,:,1),mnx,1); % D11
+AW1 = reshape(Dw(:,:,1),mnx,1);
+AN1 = reshape(Dn(:,:,1),mny,1); % D21
+AS1 = reshape(Ds(:,:,1),mny,1);
+AE2 = reshape(De(:,:,2),mnx,1); % D12
+AW2 = reshape(Dw(:,:,2),mnx,1);
+AN2 = reshape(Dn(:,:,2),mny,1); % D22
+AS2 = reshape(Ds(:,:,2),mny,1);
+APx1 = reshape(-(De(:,:,1)+Dw(:,:,1)),mnx,1);
+APy1 = reshape(-(Dn(:,:,1)+Ds(:,:,1)),mny,1);
+APx2 = reshape(-(De(:,:,2)+Dw(:,:,2)),mnx,1);
+APy2 = reshape(-(Dn(:,:,2)+Ds(:,:,2)),mny,1);
 
 % build the sparse matrix based on the numbering system
 rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
@@ -58,12 +69,16 @@ rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 iiy(1:3*mny) = repmat(rowy_index,3,1);
 jjx(1:3*mnx) = [reshape(G(1:Nx,2:Ny+1),mnx,1); reshape(G(2:Nx+1,2:Ny+1),mnx,1); reshape(G(3:Nx+2,2:Ny+1),mnx,1)];
 jjy(1:3*mny) = [reshape(G(2:Nx+1,1:Ny),mny,1); reshape(G(2:Nx+1,2:Ny+1),mny,1); reshape(G(2:Nx+1,3:Ny+2),mny,1)];
-sx(1:3*mnx) = [AW; APx; AE];
-sy(1:3*mny) = [AS; APy; AN];
+sx(1:3*mnx) = [AW1; APx1; AE1];
+sy(1:3*mny) = [AS2; APy2; AN2];
+sxy(1:3*mnx) = [AW1; APx2; AE1];
+syx(1:3*mny) = [AS2; APy1; AN2];
 
 % build the sparse matrix
 kx = 3*mnx;
 ky = 3*mny;
 Mx = sparse(iix(1:kx), jjx(1:kx), sx(1:kx), (Nx+2)*(Ny+2), (Nx+2)*(Ny+2));
 My = sparse(iiy(1:ky), jjy(1:ky), sy(1:ky), (Nx+2)*(Ny+2), (Nx+2)*(Ny+2));
+Mxy = sparse(iix(1:kx), jjx(1:kx), sx(1:kx), (Nx+2)*(Ny+2), (Nx+2)*(Ny+2));
+Myx = sparse(iiy(1:ky), jjy(1:ky), sy(1:ky), (Nx+2)*(Ny+2), (Nx+2)*(Ny+2));
 M = Mx + My;

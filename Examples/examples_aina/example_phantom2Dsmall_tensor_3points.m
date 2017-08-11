@@ -36,7 +36,8 @@ D.xvalue = im(:,:,:,1);
 D.xvalue(size(D.xvalue,1)+1,:,:) = D.xvalue(end,:,:);
 D.yvalue = im(:,:,:,2);
 D.yvalue(:,size(D.yvalue,1)+1,:) = D.yvalue(:,end,:);
-Mdiff = diffusionTerm(D);
+%Mdiff = diffusionTerm(D);
+[Mdiff, Mx, My] = diffusionTermTensor2D(D);
 M = Mdiff + Mbc; % matrix of coefficient for central scheme
 
 % Define currents (right hand side equation)
