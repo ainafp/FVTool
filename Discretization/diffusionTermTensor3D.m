@@ -122,14 +122,14 @@ Db_yz = Dy(3:Nx,3:Ny,2:Nz-1,3)./(DZ(3:Nx,3:Ny,2:Nz-1).*DY(3:Nx,3:Ny,2:Nz-1));
 Db_zy = Dz(3:Nx,3:Ny,2:Nz-1,2)./(DZ(3:Nx,3:Ny,2:Nz-1).*DY(3:Nx,3:Ny,2:Nz-1));
 
 % \phi(x+dx,y+dy,z),\phi(x-dx,y+dy,z),\phi(x+dx,y-dy,z),\phi(x-dx,y-dy,z)
-Dws_xy = Dx(2:Nx-1,2:Ny-1,2)./(DX(2:Nx-1,2:Ny-1,3:Nz).*DY(2:Nx-1,2:Ny-1,3:Nz));
-Dws_yx = Dy(2:Nx-1,2:Ny-1,1)./(DX(2:Nx-1,2:Ny-1,3:Nz).*DY(2:Nx-1,2:Ny-1,3:Nz));
-Dwn_xy = Dx(2:Nx-1,4:Ny+1,2)./(DX(2:Nx-1,4:Ny+1,3:Nz).*DY(2:Nx-1,4:Ny+1,3:Nz));
-Dwn_yx = Dy(2:Nx-1,4:Ny+1,1)./(DX(2:Nx-1,4:Ny+1,3:Nz).*DY(2:Nx-1,4:Ny+1,3:Nz));
-Des_xy = Dx(4:Nx+1,2:Ny-1,2)./(DX(4:Nx+1,2:Ny-1,3:Nz).*DY(4:Nx+1,2:Ny-1,3:Nz));
-Des_yx = Dy(4:Nx+1,2:Ny-1,1)./(DX(4:Nx+1,2:Ny-1,3:Nz).*DY(4:Nx+1,2:Ny-1,3:Nz));
-Den_xy = Dx(4:Nx+1,4:Ny+1,2)./(DX(4:Nx+1,4:Ny+1,3:Nz).*DY(4:Nx+1,4:Ny+1,3:Nz));
-Den_yx = Dy(4:Nx+1,4:Ny+1,1)./(DX(4:Nx+1,4:Ny+1,3:Nz).*DY(4:Nx+1,4:Ny+1,3:Nz));
+Dws_xy = Dx(2:Nx-1,2:Ny-1,3:Nz,2)./(DX(2:Nx-1,2:Ny-1,3:Nz).*DY(2:Nx-1,2:Ny-1,3:Nz));
+Dws_yx = Dy(2:Nx-1,2:Ny-1,3:Nz,1)./(DX(2:Nx-1,2:Ny-1,3:Nz).*DY(2:Nx-1,2:Ny-1,3:Nz));
+Dwn_xy = Dx(2:Nx-1,4:Ny+1,3:Nz,2)./(DX(2:Nx-1,4:Ny+1,3:Nz).*DY(2:Nx-1,4:Ny+1,3:Nz));
+Dwn_yx = Dy(2:Nx-1,4:Ny+1,3:Nz,1)./(DX(2:Nx-1,4:Ny+1,3:Nz).*DY(2:Nx-1,4:Ny+1,3:Nz));
+Des_xy = Dx(4:Nx+1,2:Ny-1,3:Nz,2)./(DX(4:Nx+1,2:Ny-1,3:Nz).*DY(4:Nx+1,2:Ny-1,3:Nz));
+Des_yx = Dy(4:Nx+1,2:Ny-1,3:Nz,1)./(DX(4:Nx+1,2:Ny-1,3:Nz).*DY(4:Nx+1,2:Ny-1,3:Nz));
+Den_xy = Dx(4:Nx+1,4:Ny+1,3:Nz,2)./(DX(4:Nx+1,4:Ny+1,3:Nz).*DY(4:Nx+1,4:Ny+1,3:Nz));
+Den_yx = Dy(4:Nx+1,4:Ny+1,3:Nz,1)./(DX(4:Nx+1,4:Ny+1,3:Nz).*DY(4:Nx+1,4:Ny+1,3:Nz));
 % \phi(x+dx,y,z+dz),\phi(x-dx,y,z+dz),\phi(x+dx,y,z-dz),\phi(x-dx,y,z-dz)
 Dwb_xz = Dx(2:Nx-1,3:Ny,2:Nz-1,3)./(DX(2:Nx-1,3:Ny,2:Nz-1).*DZ(2:Nx-1,3:Ny,2:Nz-1));
 Dwb_zx = Dz(2:Nx-1,3:Ny,2:Nz-1,1)./(DX(2:Nx-1,3:Ny,2:Nz-1).*DZ(2:Nx-1,3:Ny,2:Nz-1));
@@ -142,12 +142,12 @@ Def_zx = Dz(4:Nx+1,3:Ny,4:Nz+1,1)./(DX(4:Nx+1,3:Ny,4:Nz+1).*DZ(4:Nx+1,3:Ny,4:Nz+
 % \phi(x,y+dy,z+dz),\phi(x,y-dy,z+dz),\phi(x,y+dy,z-dz),\phi(x,y-dy,z-dz)
 Dsb_yz = Dy(3:Nx,2:Ny-1,2:Nz-1,3)./(DY(3:Nx,2:Ny-1,2:Nz-1).*DZ(3:Nx,2:Ny-1,2:Nz-1));
 Dsb_zy = Dz(3:Nx,2:Ny-1,2:Nz-1,2)./(DY(3:Nx,2:Ny-1,2:Nz-1).*DZ(3:Nx,2:Ny-1,2:Nz-1));
-Dsf_yz = Dy(3:Nx,2:Nx-1,4:Ny+1,3)./(DY(3:Nx,2:Ny-1,4:Nz+1).*DZ(3:Nx,2:Ny-1,4:Nz+1));
-Dsf_zy = Dz(3:Nx,2:Nx-1,4:Ny+1,2)./(DY(3:Nx,2:Ny-1,4:Nz+1).*DZ(3:Nx,2:Ny-1,4:Nz+1));
-Dnb_yz = Dy(3:Nx,4:Nx+1,2:Ny-1,3)./(DY(3:Nx,4:Ny+1,2:Nz-1).*DZ(3:Nx,4:Ny+1,2:Nz-1));
-Dnb_zy = Dz(3:Nx,4:Nx+1,2:Ny-1,2)./(DY(3:Nx,4:Ny+1,2:Nz-1).*DZ(3:Nx,4:Ny+1,2:Nz-1));
-Dnf_yz = Dy(3:Nx,4:Nx+1,4:Ny+1,3)./(DY(3:Nx,4:Ny+1,4:Nz+1).*DZ(3:Nx,4:Ny+1,4:Nz+1));
-Dnf_zy = Dz(3:Nx,4:Nx+1,4:Ny+1,2)./(DY(3:Nx,4:Ny+1,4:Nz+1).*DZ(3:Nx,4:Ny+1,4:Nz+1));
+Dsf_yz = Dy(3:Nx,2:Ny-1,4:Nz+1,3)./(DY(3:Nx,2:Ny-1,4:Nz+1).*DZ(3:Nx,2:Ny-1,4:Nz+1));
+Dsf_zy = Dz(3:Nx,2:Ny-1,4:Nz+1,2)./(DY(3:Nx,2:Ny-1,4:Nz+1).*DZ(3:Nx,2:Ny-1,4:Nz+1));
+Dnb_yz = Dy(3:Nx,4:Ny+1,2:Nz-1,3)./(DY(3:Nx,4:Ny+1,2:Nz-1).*DZ(3:Nx,4:Ny+1,2:Nz-1));
+Dnb_zy = Dz(3:Nx,4:Ny+1,2:Nz-1,2)./(DY(3:Nx,4:Ny+1,2:Nz-1).*DZ(3:Nx,4:Ny+1,2:Nz-1));
+Dnf_yz = Dy(3:Nx,4:Ny+1,4:Nz+1,3)./(DY(3:Nx,4:Ny+1,4:Nz+1).*DZ(3:Nx,4:Ny+1,4:Nz+1));
+Dnf_zy = Dz(3:Nx,4:Ny+1,4:Nz+1,2)./(DY(3:Nx,4:Ny+1,4:Nz+1).*DZ(3:Nx,4:Ny+1,4:Nz+1));
 
 % calculate the coefficients for the internal cells
 APx = reshape(  6 * Dc_xx + 4 * 2 * Dc_xy, mnx, 1);
