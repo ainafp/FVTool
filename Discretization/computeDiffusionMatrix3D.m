@@ -15,10 +15,10 @@ BC = createBC(meshstruct); % all Neumann boundary condition structure
 [Mbc, RHSbc] = boundaryCondition(BC); % boundary condition discretization
 
 % Define the transfer coefficients:
-[xvalue, yvalue, zvalue] = extendBoundaryTensor3D_2v(im);
+[xvalue, yvalue, zvalue] = extendBoundaryTensor3D(im);
 D = FaceVariable(meshstruct, xvalue, yvalue, zvalue);
 Dave = arithmeticMeanTensor(D); % convert a cell variable to face variable
-Mdiff = diffusionTermTensor3D_d(Dave);
+Mdiff = diffusionTermTensor3D(Dave);
 M = Mdiff + Mbc; % matrix of coefficient for central scheme
 
 end
