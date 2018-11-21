@@ -1,4 +1,4 @@
-function conn = compute_global_connectivity_matrix_f(potentials, masked_atlas)
+function conn = computeConductanceMatrix(potentials, masked_atlas)
 %%% Compute global connectivity matrix
 
 roi_list0 = unique(masked_atlas);        % consider 0 is background

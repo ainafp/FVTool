@@ -14,7 +14,6 @@ addpath(genpath(folder_nii));
 % Input tensors. In this example from DSI Studio
 file_name = fullfile(data_folder, 'data.src.gz.012fy.dti.fib.gz');
 [fa, md, im, voxel_size]= read_fib(file_name);
-im_size = size(im);
 
 % Parcellation
 atlas_name = fullfile(data_folder, 'your_atlas.nii.gz');
@@ -28,10 +27,12 @@ clear atlas_obj
 mask_name = fullfile(data_folder, 'nodif_brain_mask.nii.gz');
 mask_obj = load_nii(mask_name);
 mask0 = double(mask_obj.img);
+mask0 = rot90(mask0);
 % mask of WM from wm_mask
 mask_name = fullfile(data_folder, 'wm_mask.nii.gz');
 mask_obj = load_nii(mask_name);
 mask1 = double(mask_obj.img);
+mask1 = rot90(mask1);
 % mask of GM from your parcellation
 mask2 = atlas0;
 mask2(mask2>0) = 1;
@@ -50,7 +51,8 @@ sprintf('diffusion matrix computed')
 clear meshstruct im
 
 % Compute currents per ROI
-RHSbcM = computeCurrentsROI3D(im_size(1:3), sparse(RHSbc), atlas.*mask);
+im_size = size(im);
+RHSbcM = computeCurrentsROI3D(im_size(1:3), sparse(RHSbc), atlas.*mask, mask);
 
 % Compute inversion
 x = M\RHSbcM;

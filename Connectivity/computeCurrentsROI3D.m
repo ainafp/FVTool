@@ -1,4 +1,4 @@
-function RHSbcM = computeCurrentsROI3D(im_sizes, M, RHSbc, atlas, mask)
+function RHSbcM = computeCurrentsROI3D(im_sizes, RHSbc, atlas, mask)
 % Compute potentials 3D
 
 % Define mask
