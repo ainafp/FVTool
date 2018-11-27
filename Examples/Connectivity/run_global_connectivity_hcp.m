@@ -43,12 +43,12 @@ mask_obj = load_nii(mask_name);
 mask0 = double(mask_obj.img);
 mask0 = rot90(mask0,2);
 % Remove ventricles from mask
-mask2 = atlas0;
-mask2((atlas0==0) | (atlas0==4) | (atlas0==5) | (atlas0==14) | (atlas0==15) ...
-   | (atlas0==24) | (atlas0==43) | (atlas0==44) | (atlas0==72) | (atlas0==80)) = 0;
+mask2 = atlas;
+mask2((atlas==0) | (atlas==4) | (atlas==5) | (atlas==14) | (atlas==15) ...
+   | (atlas==24) | (atlas==43) | (atlas==44) | (atlas==72) | (atlas==80)) = 0;
 mask2(mask2>0) = 1;
 mask = mask0.*mask2;
-clear atlas0 mask_obj mask0 mask2
+clear mask_obj mask0 mask2
 
 
 %%% Compute global connectivity
