@@ -2,8 +2,8 @@
 % for Phantom 2D small example or ones 3x3, computing connectivity matrix
 % no superposition used
 
-plot_potentials = true;
-use_phantom = false;
+plot_potentials = false;
+use_phantom = true;
 
 % Input image
 if use_phantom
@@ -48,7 +48,7 @@ rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
-        if p2>=p1
+        if p2>p1
             RHSbc0 = RHSbc;
             RHSbc0(p1) = 1; % define current i
             RHSbc0(p2) = -1; % define current j
@@ -56,7 +56,7 @@ for p1=rowx_index'
             conductance(p1, p2) = abs(1 / (c.value(p1) - c.value(p2)));
             conductance(p2, p1) = conductance(p1, p2);
             if ~isnan(conductance(p1, p2)) && ~isinf(conductance(p1, p2)) && plot_potentials
-                figure(100); image(c.value(2:end-1,2:end-1), 'CDataMapping', 'scaled'); 
+                figure(11); image(c.value(2:end-1,2:end-1), 'CDataMapping', 'scaled'); 
                 colorbar; title('Potentials')
                 pause(.2)
             end
@@ -66,6 +66,6 @@ end
 
 % Plot results
 conductance(isnan(conductance)) = 0;
-figure; image(im,'CDataMapping','scaled'); colorbar; title('Image')
-figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+figure(10); image(im,'CDataMapping','scaled'); colorbar; title('Image')
+figure(12); image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
 colorbar; title('Conductance')
