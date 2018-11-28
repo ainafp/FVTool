@@ -16,19 +16,19 @@ subject = num2str(args)
 
 % Data folder
 hcp_folder = 'Data/HCP_WashU-UMN/';
-subject_folder = [subject '_3T_Diffusion_preproc/' subject '/T1w/'];
-data_folder = [hcp_folder subject_folder '/Diffusion/'];
+subject_folder = fullfile([subject '_3T_Diffusion_preproc'], subject, 'T1w');
+data_folder = fullfile(hcp_folder, subject_folder, 'Diffusion');
 
 
 %%% Prepare inputs
 
 % Input image
-file_name = [data_folder 'data.src.gz.012fy.dti.fib.gz'];
+file_name = fullfile(data_folder, 'data.src.gz.012fy.dti.fib.gz');
 [fa, md, im, voxel_size]= read_fib(file_name);
 im_size = size(im);
 
 % Parcellation
-atlas_name = [data_folder './../wmparc_1.25.nii.gz']; % from FreeSurfer
+atlas_name = fullfile(data_folder, '..', 'wmparc_1.25.nii.gz'); % from FreeSurfer
 atlas_obj = load_nii(atlas_name);
 atlas = double(atlas_obj.img);
 atlas = rot90(atlas,2);
@@ -38,7 +38,7 @@ atlas((atlas>2999) & (atlas<3036) | (atlas==5001)) = 2;
 atlas((atlas>3999) & (atlas<4036) | (atlas==5002)) = 41;
 
 % Mask
-mask_name = [data_folder 'nodif_brain_mask.nii.gz'];
+mask_name = fullfile(data_folder, 'nodif_brain_mask.nii.gz');
 mask_obj = load_nii(mask_name);
 mask0 = double(mask_obj.img);
 mask0 = rot90(mask0,2);
@@ -80,13 +80,13 @@ sprintf('potentials computed')
 
 % Take potentials final result
 conn = computeConductanceMatrix(potentials, atlas.*mask);
-conn_fn = sprintf([data_folder 'conductance_matrix.mat']);
+conn_fn = fullfile(data_folder, 'conductance_matrix.mat');
 save(conn_fn, 'conn');
 
 toc
 
 % Save results
-filename = sprintf([data_folder 'conductance.mat']);
+filename = fullfile(data_folder, 'conductance.mat');
 save(filename, '-v7.3')
 sprintf('file saved')
 
