@@ -1,12 +1,8 @@
 % Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
-% for D = ones(145)
-% one only point
+% for a mesh of ones. Compute conductance between 2 points p1 and p2
 
 % Input image
-im = phantom(2);
-im = [ 1, 2, 1; 2, 3, 2; 3, 4, 3];
-im = [ 1, 2; 2, 1];
-
+im = ones(100);
 
 % Construct mesh structure
 Lx = size(im, 1); % domain length
@@ -28,7 +24,7 @@ M = Mdiff + Mbc; % matrix of coefficient for central scheme
 
 % Define currents (right hand side equation)
 p1 = sub2ind([Ny + 2, Nx + 2], 72, 9);
-p2 = sub2ind([Ny + 2, Nx + 2], 70, 138);
+p2 = sub2ind([Ny + 2, Nx + 2], 30, 80);
 RHSbc(p1) = 1;
 RHSbc(p2) = -1;
 
@@ -40,6 +36,4 @@ conductance = 1 / (c.value(p1) - c.value(p2));
 
 % Plot results
 figure; image(c.value,'CDataMapping','scaled'); colorbar;
-savefig('example_0.fig')
-saveas(gcf, 'example_0.eps', 'epsc')
 
