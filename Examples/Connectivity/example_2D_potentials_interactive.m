@@ -1,17 +1,9 @@
-% Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
+% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
 % for Phantom example
 
-eps = 0.000001;
-
 % Input image
-%im = phantom(100) + eps;
-%name = 'example_phantom_100x100';
+im = phantom(100);
 
-load ./../CSAODF_HoughTract/tracts_hcp1.mat
-im = GFA(:,:,70);
-name = 'example_GFA_HCP';
-
-saveims = false;
 compute_connmatrix = false;
 
 % Construct mesh structure
@@ -72,20 +64,12 @@ if compute_connmatrix
         end
     end
     figure(100); imagesc(abs(conduct0), [-1,1]); colorbar;
-    if saveims
-        savefig(strcat(name, '_connectivity_matrix.fig'))
-        saveas(gcf, strcat(name, '_connectivity_matrix.eps'), 'epsc')
-    end
 end
 
 %%
 
 % Conductance map
 figure(101); image(im,'CDataMapping','scaled'); colorbar;
-if saveims
-    savefig(strcat(name, '.fig'));
-    saveas(gcf, strcat(name, '.eps'), 'epsc');
-end
 
 % Interactive conductance map
 for i=1:100
@@ -102,8 +86,5 @@ for i=1:100
                          - (potentials(a2,b2,p2) - potentials(a2,b2,p1))));
     end
     figure(102); imagesc((c), [0,0.5]); colormap jet; colorbar;
-    if saveims
-        savefig(strcat(name, '_conductance_p', int2str(p1), '.fig'));
-        saveas(gcf, strcat(name, '_conductance_p', int2str(p1), '.eps'), 'epsc');
-    end
+
 end
