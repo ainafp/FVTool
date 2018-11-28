@@ -73,7 +73,7 @@ clear phival
 sprintf('potentials computed')
 
 % Compute connectivity matrix
-conn = compute_global_connectivity_matrix_f(potentials, atlas.*mask);
+conn = computeConductanceMatrix(potentials, atlas.*mask);
 conn_fn = fullfile(data_folder, 'global_connectivity_matrix.mat');
 save(conn_fn, 'conn');
 

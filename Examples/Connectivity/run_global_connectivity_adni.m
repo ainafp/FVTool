@@ -84,7 +84,7 @@ potentials = phival(2:end-1, 2:end-1, 2:end-1, :);
 clear phival
 sprintf('potentials computed')
 
-% Take potentials final result
+% Compute conductance matrix
 conn = computeConductanceMatrix(potentials, atlas.*mask);
 conn_fn = fullfile(data_folder, 'global_connectivity_matrix.mat');
 save(conn_fn, 'conn');
