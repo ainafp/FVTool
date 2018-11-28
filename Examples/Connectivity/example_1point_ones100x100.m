@@ -1,4 +1,4 @@
-% Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
+% Diffusion equation  $\nabla \cdot (-D \nabla \phi) = \gamma$  
 % for a mesh of ones. Compute conductance between 2 points p1 and p2
 
 % Input image
