@@ -1,5 +1,8 @@
 function run_global_connectivity_hcp(varargin)
 % Compute global connectivity from tensors computed with DSIstudio
+% Adapt paths and file names to your own!
+%
+% Example: run_global_connectivity_hcp(100307)
 
 
 %%% Load folders and code

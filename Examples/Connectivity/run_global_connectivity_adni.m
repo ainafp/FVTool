@@ -1,5 +1,8 @@
 function run_global_connectivity_adni(subject)
 % Compute global connectivity from tensors computed with DSIstudio
+% Adapt paths and file names to your own!
+%
+% Example: run_global_connectivity_adni(003_S_2374)
 
 
 %%% Load folders and code
