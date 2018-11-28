@@ -23,7 +23,7 @@ date_folder = setdiff({d.name},{'.','..'});
 d = dir([main_folder subject '/' dti_folder{1} '/' date_folder{1} '/*']);
 study_folder = setdiff({d.name},{'.','..'});
 spost_folder = fullfile(subject, dti_folder{1}, date_folder{1}, study_folder{1});
-data_folder = fullfile(main_folder, spost_folder, 'Preprocessed', 'for_dsistudio');
+data_folder = fullfile(main_folder, spost_folder, 'Preprocessed');
 
 
 %%% Prepare inputs
