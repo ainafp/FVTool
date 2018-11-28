@@ -1,17 +1,22 @@
-% Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
+% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
 % for Phantom 2D small example or ones 3x3, computing connectivity matrix
 % no superposition used
 
+plot_potentials = true;
+use_phantom = false;
+
 % Input image
-%im = phantom(10);
-%im = im(2:end-1,3:end-2);
-%im = zeros(3);
-%im(1, :) = 1;
-%im(:, 1) = 1;
-im = zeros(3);
-im(1, :) = 1;
-im(:, 1) = 1;
-im(3, 3) = 1;
+if use_phantom
+    % input phantom in very low resolution
+    im = phantom(10);
+    im = im(2:end-1,3:end-2);
+else
+    % or a 3x3 image with some zeros and ones
+    im = zeros(3);
+    im(1, :) = 1;
+    im(:, 1) = 1;
+    im(3, 3) = 1;
+end
 
 % Construct mesh structure
 Lx = size(im, 1); % domain length
@@ -40,34 +45,27 @@ rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 
 % Compute conductance
-%nfigs = 0
 conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
         if p2>=p1
-            p1
-            p2
             RHSbc0 = RHSbc;
             RHSbc0(p1) = 1; % define current i
             RHSbc0(p2) = -1; % define current j
             c = solvePDE(meshstruct, M, RHSbc0); % solve for the central scheme
             conductance(p1, p2) = abs(1 / (c.value(p1) - c.value(p2)));
             conductance(p2, p1) = conductance(p1, p2);
-            %if ~isnan(conductance(p1, p2)) && ~isinf(conductance(p1, p2)) %&& nfigs<10
-            %    figure; image(c.value, 'CDataMapping', 'scaled'); colorbar;
-            %    nfigs = nfigs + 1;
-            %end
+            if ~isnan(conductance(p1, p2)) && ~isinf(conductance(p1, p2)) && plot_potentials
+                figure(100); image(c.value(2:end-1,2:end-1), 'CDataMapping', 'scaled'); 
+                colorbar; title('Potentials')
+                pause(.2)
+            end
         end
     end
 end
 
-%%
 % Plot results
 conductance(isnan(conductance)) = 0;
-figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); colorbar
-savefig('example_phantom_8x9.fig')
-saveas(gcf, 'example_phantom_8x9.eps', 'epsc')
-
-figure; image(im,'CDataMapping','scaled'); colorbar;
-savefig('example_phantom_8x9.fig')
-saveas(gcf, 'example_phantom_8x9.eps', 'epsc')
+figure; image(im,'CDataMapping','scaled'); colorbar; title('Image')
+figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance')
