@@ -1,4 +1,4 @@
-% Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
+% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
 % for Phantom example
 
 % Input image
@@ -42,7 +42,6 @@ rowz_index = reshape(G(2:Nx+1,2:Ny+1,2:Nz+1),mnz,1); % main diagonal z
 
 %%
 % Compute conductance
-%nfigs = 0
 conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
@@ -65,7 +64,6 @@ end
 
 %%
 % Plot results
-%conductance(isnan(conductance)) = 0;
-figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); colorbar
-savefig('example_phantom_tensor3d_2x2_a.fig')
-saveas(gcf, 'example_phantom_tensor3d_2x2_a.eps', 'epsc')
+conductance(isnan(conductance)) = 0;
+figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance')
