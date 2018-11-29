@@ -1,25 +1,28 @@
-% Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
-% for Phantom example
+% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
+% Compute conductance from vectors in a 3D example
+
+plot_input = false;
 
 % Input image
+%im = zeros(2,2,2,3,3,3) + 0.5;
 im = zeros(3,3,3);
 im(:,1,1) = 0.8;
 im(:,:,1) = 0.8;
 im(:,1,:) = 0.8;
 im(3,3,3) = 0.8;
-%im(:,:,:,2) = 0;
-%im(:,:,:,3) = 0;
 im(:,:,:,2) = 1 - im - 0.1;
 im(:,:,:,3) = 0.1;
 im(im>0.8) = 0;
 size(im)
 
-%figure; imagesc(im(:,:,1,1)); colorbar;
-%figure; imagesc(im(:,:,2,1)); colorbar;
-%figure; imagesc(im(:,:,3,1)); colorbar;
-%figure; imagesc(im(:,:,1,2)); colorbar;
-%figure; imagesc(im(:,:,2,2)); colorbar;
-%figure; imagesc(im(:,:,3,2)); colorbar;
+if plot_input
+    figure; imagesc(im(:,:,1,1), [0,1]); colorbar;
+    figure; imagesc(im(:,:,2,1), [0,1]); colorbar;
+    figure; imagesc(im(:,:,3,1), [0,1]); colorbar;
+    figure; imagesc(im(:,:,1,2), [0,1]); colorbar;
+    figure; imagesc(im(:,:,2,2), [0,1]); colorbar;
+    figure; imagesc(im(:,:,3,2), [0,1]); colorbar;
+end
 
 %%
 % Construct mesh structure
@@ -62,8 +65,6 @@ conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
         if p2>=p1
-            p1
-            p2
             RHSbc0 = RHSbc;
             RHSbc0(p1) = 1;                          % define current i
             RHSbc0(p2) = -1;                         % define current j
@@ -77,4 +78,3 @@ end
 %%
 % Plot results
 figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); colorbar
-%saveas(gcf, 'example_phantom_tensor3d_3x3_d.eps', 'epsc')
