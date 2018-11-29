@@ -1,4 +1,4 @@
-% Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
+% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
 % for Phantom 2D small example using vectors instead of scalars
 % computing potential and conductance between 2 points
 
@@ -43,10 +43,4 @@ c = solvePDE(meshstruct, M, RHSbc); % solve for the central scheme
 conductance = 1 / (c.value(p1) - c.value(p2));
 
 % Plot results
-%figure; image(im,'CDataMapping','scaled'); colorbar;
-%savefig('example_phantom.fig')
-%saveas(gcf, 'example_phantom.eps', 'epsc')
 figure; image(c.value, 'CDataMapping', 'scaled'); colorbar;
-savefig('example_phantom_2.fig')
-saveas(gcf, 'example_phantom_2.eps', 'epsc')
-
