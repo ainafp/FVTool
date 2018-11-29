@@ -1,12 +1,7 @@
-% Diffusion equation $ \nabla. (-D \nabla \phi) = \gamma $  
+% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
 % for Phantom example
 
 % Input image
-%im = phantom(10);
-%im = im(2:end-1,3:end-2);
-%im = zeros(3);
-%im(1, :) = 1;
-%im(:, 1) = 1;
 im = zeros(3) + 0.0;
 im(1, :) = 0.8;
 im(:, 1) = 0.8;
@@ -41,13 +36,10 @@ rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 
 % Compute conductance
-%nfigs = 0
 conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
-        if p2>=p1
-            p1
-            p2
+        if p2>p1
             RHSbc0 = RHSbc;
             RHSbc0(p1) = 1; % define current i
             RHSbc0(p2) = -1; % define current j
@@ -61,5 +53,3 @@ end
 % Plot results
 conductance(isnan(conductance)) = 0;
 figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); colorbar
-savefig('example_phantom_tensor_3x3.fig')
-saveas(gcf, 'example_phantom_tensor_3x3.eps', 'epsc')
