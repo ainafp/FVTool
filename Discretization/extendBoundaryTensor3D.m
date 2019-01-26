@@ -1,4 +1,4 @@
-function [xvalue, yvalue, zvalue] = extendBoundaryTensor3D_2v(im)
+function [xvalue, yvalue, zvalue] = extendBoundaryTensor3D(im)
 
 Nx = size(im, 1); % number of cells
 Ny = size(im, 2); % number of cells

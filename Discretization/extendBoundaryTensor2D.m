@@ -1,4 +1,4 @@
-function [xvalue, yvalue] = extendBoundaryTensor2D_2v(im)
+function [xvalue, yvalue] = extendBoundaryTensor2D(im)
 
 Nx = size(im, 1); % number of cells
 Ny = size(im, 2); % number of cells

@@ -1,4 +1,4 @@
-function M = diffusionTermTensor2D_d(D)
+function M = diffusionTermTensor2D(D)
 % This function uses the central difference scheme to discretize a 2D
 % diffusion term in the form \grad . (D \grad \phi) where u is a face vactor
 % It also returns the x and y parts of the matrix of coefficient.
