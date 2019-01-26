@@ -1,4 +1,7 @@
 function [fa, md, tensor, voxel_size]= read_fib(file_name)
+% Read .fib generated with DSI Studio and return FA, MD, tensors and 
+% voxel size
+
 if ~exist('file_name')
     file_name =  uigetfile('*.fib.gz');
 end
