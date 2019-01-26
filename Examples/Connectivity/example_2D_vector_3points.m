@@ -1,5 +1,6 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom example
+% Compare potentials in 3 points. 
+% Author: Aina Frau-Pascual
+
 
 % Input image
 im = zeros(3) + 0.5;

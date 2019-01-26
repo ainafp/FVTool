@@ -1,6 +1,7 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom example
-% Test superposition
+% Test superposition property in conductance computation, 
+% in a 2D vector example
+% Author: Aina Frau-Pascual
+
 
 plot_potentials = false;
 

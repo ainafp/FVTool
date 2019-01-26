@@ -1,7 +1,7 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom 2D small example
-% Checking conductance in 3 points
+% Phantom 2D small example. Compare potentials in 3 points. 
 % Validating superposition property
+% Author: Aina Frau-Pascual
+
 
 % Input image
 im = phantom(10);

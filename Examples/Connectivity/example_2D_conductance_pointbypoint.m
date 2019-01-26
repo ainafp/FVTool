@@ -1,6 +1,7 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom 2D small example or ones 3x3, computing connectivity matrix
+% Phantom 2D small example or ones 3x3, computing conductance matrix
 % no superposition used
+% Author: Aina Frau-Pascual
+
 
 plot_potentials = false;
 use_phantom = true;

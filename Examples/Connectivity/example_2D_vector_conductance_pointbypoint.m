@@ -1,5 +1,6 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom example
+% Test point by point conductance computation, in a 2D vector example
+% Author: Aina Frau-Pascual
+
 
 % Input image
 im = zeros(3) + 0.0;

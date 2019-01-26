@@ -1,10 +1,12 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom example
+% Using Phantom 100x100 example, look at conductance maps interactively
+% Author: Aina Frau-Pascual
+
 
 % Input image
 im = phantom(100);
 
-compute_connmatrix = false;
+compute_connmatrix = false; 
+% change to true if you want to compute whole conductance matrix
 
 % Construct mesh structure
 Lx = size(im, 1);                % domain length

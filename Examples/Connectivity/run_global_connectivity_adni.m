@@ -3,6 +3,8 @@ function run_global_connectivity_adni(subject)
 % Adapt paths and file names to your own!
 %
 % Example: run_global_connectivity_adni(003_S_2374)
+%
+% Author: Aina Frau-Pascual
 
 
 %%% Load folders and code

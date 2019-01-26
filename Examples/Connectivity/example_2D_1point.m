@@ -1,5 +1,6 @@
-% Diffusion equation  $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for a mesh of ones. Compute conductance between 2 points p1 and p2
+% For a mesh of ones, compute conductance between 2 points p1 and p2
+% Author: Aina Frau-Pascual
+
 
 % Input image
 im = ones(100);

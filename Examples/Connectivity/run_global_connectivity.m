@@ -4,6 +4,8 @@ function run_global_connectivity(data_folder)
 % Adapt paths and file names to your own!
 %
 % Example: run_global_connectivity(your_path)
+%
+% Author: Aina Frau-Pascual
 
 
 %%% Load folders and code

@@ -1,6 +1,7 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom 2D small example using vectors instead of scalars
+% Phantom 2D small example using vectors instead of scalars
 % computing potential and conductance between 2 points
+% Author: Aina Frau-Pascual
+
 
 % Input image
 im = phantom(10, 10);

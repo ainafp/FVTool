@@ -1,5 +1,7 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
 % Compute conductance from vectors in a 3D example
+% Author: Aina Frau-Pascual
+%
+%%
 
 plot_input = false;
 

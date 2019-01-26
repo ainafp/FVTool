@@ -1,5 +1,7 @@
-% Diffusion equation $\nabla \cdot (-D \nabla \phi) = \gamma$  
-% for Phantom example
+% 3D scalar example
+% Author: Aina Frau-Pascual
+%
+%%
 
 % Input image
 im = zeros(3,3,3);
