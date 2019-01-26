@@ -3,22 +3,9 @@ function phiFaceAverage = arithmeticMeanTensor(phi)
 % over the MeshStructure and calculates the arithmetic average on
 % the cell faces, for a uniform mesh.
 %
-% SYNOPSIS:
-%   phiFaceAverage = arithmeticMean(phi)
-%
-% PARAMETERS:
-%
-%
-% RETURNS:
-%
-%
-% EXAMPLE:
-%
-% SEE ALSO:
-%
+% Author: Aina Frau-Pascual, adapting code from arithmeticMean.m
+% for its use with tensors
 
-% Copyright (c) 2012-2016 Ali Akbar Eftekhari
-% See the license file
 
 % extract data from the mesh structure
 

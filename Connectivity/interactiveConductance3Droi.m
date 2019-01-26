@@ -1,5 +1,8 @@
 function interactiveConductance3Droi(fa, mask, atlas, dim_size, potentials, dim, slice)
 % Interactive conductance map
+%
+% Author: Aina Frau-Pascual
+
 
 % Conductance map
 if dim==3

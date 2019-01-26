@@ -1,4 +1,8 @@
 function [meshstruct, D, M, RHSbc] = computeDiffusionMatrix2D(im, voxel_size)
+% Compute Diffusion Matrix M from mesh 2D of tensors
+%
+% Author: Aina Frau-Pascual
+
 
 % Construct mesh structure
 Nx = size(im, 1);        % number of cells
@@ -19,4 +23,6 @@ Dave = arithmeticMeanTensor(D); % convert a cell variable to face variable
 Mdiff = diffusionTermTensor2D(Dave);
 M = Mdiff + Mbc; % matrix of coefficient for central scheme
 
-figure(104); imagesc(Mbc); colormap jet; colorbar;
+%figure(104); imagesc(Mbc); colormap jet; colorbar;
+
+end

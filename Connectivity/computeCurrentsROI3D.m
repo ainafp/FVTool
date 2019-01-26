@@ -1,5 +1,8 @@
 function RHSbcM = computeCurrentsROI3D(im_sizes, RHSbc, atlas, mask)
 % Compute potentials 3D
+%
+% Author: Aina Frau-Pascual
+
 
 % Define mask
 Nx = im_sizes(1);

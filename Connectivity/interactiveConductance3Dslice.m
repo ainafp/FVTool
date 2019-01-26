@@ -1,5 +1,8 @@
 function interactiveConductance3Dslice(fa, mask, dim_size, potentials, mask_index, dim, slice)
 % Interactive conductance map
+%
+% Author: Aina Frau-Pascual
+
 
 % Conductance map
 if dim==3

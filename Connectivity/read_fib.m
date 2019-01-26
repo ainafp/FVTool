@@ -1,6 +1,10 @@
 function [fa, md, tensor, voxel_size]= read_fib(file_name)
 % Read .fib generated with DSI Studio and return FA, MD, tensors and 
 % voxel size
+%
+% Author: Aina Frau-Pascual, modified from public code in 
+% http://dsi-studio.labsolver.org/Manual/export-data-to-matlab
+
 
 if ~exist('file_name')
     file_name =  uigetfile('*.fib.gz');

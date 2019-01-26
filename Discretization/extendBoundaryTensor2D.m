@@ -1,4 +1,9 @@
 function [xvalue, yvalue] = extendBoundaryTensor2D(im)
+% This function extends the 2D tensors in the boundary. When using tensors,
+% you need to use more neighbors to compute discretized matrix
+%
+% Author: Aina Frau-Pascual
+
 
 Nx = size(im, 1); % number of cells
 Ny = size(im, 2); % number of cells

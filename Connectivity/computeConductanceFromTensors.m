@@ -1,5 +1,7 @@
 function computeConductanceFromTensors(data_folder)
 % Compute global connectivity from tensors computed with DSIstudio
+%
+% Author: Aina Frau-Pascual
 
 
 %%% Load folders and code
