@@ -1,12 +1,8 @@
 % Compute conductance from vectors in a 3D example
 % Author: Aina Frau-Pascual
-%
+
 %%
-
-plot_input = false;
-
 % Input image
-%im = zeros(2,2,2,3,3,3) + 0.5;
 im = zeros(3,3,3);
 im(:,1,1) = 0.8;
 im(:,:,1) = 0.8;
@@ -15,16 +11,6 @@ im(3,3,3) = 0.8;
 im(:,:,:,2) = 1 - im - 0.1;
 im(:,:,:,3) = 0.1;
 im(im>0.8) = 0;
-size(im)
-
-if plot_input
-    figure; imagesc(im(:,:,1,1), [0,1]); colorbar;
-    figure; imagesc(im(:,:,2,1), [0,1]); colorbar;
-    figure; imagesc(im(:,:,3,1), [0,1]); colorbar;
-    figure; imagesc(im(:,:,1,2), [0,1]); colorbar;
-    figure; imagesc(im(:,:,2,2), [0,1]); colorbar;
-    figure; imagesc(im(:,:,3,2), [0,1]); colorbar;
-end
 
 %%
 % Construct mesh structure
@@ -79,4 +65,20 @@ end
 
 %%
 % Plot results
-figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); colorbar
+
+figure, set(gcf,'position', [300, 300, 950, 650])
+suptitle('Original image 3x3x3x3: rows are vectors in tensor'); 
+subplot(3,3,1), imagesc(im(:,:,1,1), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,2), imagesc(im(:,:,2,1), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,3), imagesc(im(:,:,3,1), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,4), imagesc(im(:,:,1,2), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,5), imagesc(im(:,:,2,2), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,6), imagesc(im(:,:,3,2), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,7), imagesc(im(:,:,1,3), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,8), imagesc(im(:,:,2,3), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(3,3,9), imagesc(im(:,:,3,3), [0,1]); colorbar; xlabel('x'); ylabel('y');
+    
+figure,
+image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance matrix derived from original image');
+xlabel('voxel i'); ylabel('voxel s');

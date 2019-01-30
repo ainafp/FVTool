@@ -1,16 +1,12 @@
 % 3D scalar example
 % Author: Aina Frau-Pascual
-%
-%%
 
+%%
 % Input image
 im = zeros(3,3,3);
 im(:,:,1) = 1;
 im(:,1,:) = 1;
 im(3,3,3) = 1;
-figure; imagesc(im(:,:,1)); colorbar;
-figure; imagesc(im(:,:,2)); colorbar;
-figure; imagesc(im(:,:,3)); colorbar;
 
 %%
 % Construct mesh structure
@@ -48,24 +44,27 @@ conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
         if p2>=p1
-            p1
-            p2
             RHSbc0 = RHSbc;
             RHSbc0(p1) = 1; % define current i
             RHSbc0(p2) = -1; % define current j
             c = solvePDE(meshstruct, M, RHSbc0); % solve for the central scheme
             conductance(p1, p2) = abs(1 / (c.value(p1) - c.value(p2)));
             conductance(p2, p1) = conductance(p1, p2);
-            figure(4); imagesc(c.value(2:4,2:4,2)); colorbar;
-            figure(5); imagesc(c.value(2:4,2:4,3)); colorbar;
-            figure(6); imagesc(c.value(2:4,2:4,4)); colorbar;
-            pause(0.5);
         end
     end
 end
+conductance(isnan(conductance)) = 0;
+
 
 %%
 % Plot results
-conductance(isnan(conductance)) = 0;
-figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
-colorbar; title('Conductance')
+f = figure; f.Name = 'Original image 3x3x3'; 
+set(gcf,'position', [300, 300, 1000, 180]);
+subplot(1,3,1), imagesc(im(:,:,1,1), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(1,3,2), imagesc(im(:,:,2,1), [0,1]); colorbar; xlabel('x'); ylabel('y');
+subplot(1,3,3), imagesc(im(:,:,3,1), [0,1]); colorbar; xlabel('x'); ylabel('y');
+
+figure,
+image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance matrix derived from original image');
+xlabel('voxel i'); ylabel('voxel s');

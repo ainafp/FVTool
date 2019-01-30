@@ -50,7 +50,7 @@ mask = mask0 .* (mask1 + mask2);
 mask(mask>0) = 1;
 
 
-%%% Compute global connectivity
+%%% Compute conductance
 
 % Compute diffusion matrix
 [M, RHSbc] = computeDiffusionMatrix3D(im.*mask, voxel_size);
@@ -78,7 +78,7 @@ potentials = phival(2:end-1, 2:end-1, 2:end-1, :);
 clear phival
 sprintf('potentials computed')
 
-% Compute connectivity matrix
+% Compute conductance matrix
 conn = computeConductanceMatrix(potentials, atlas.*mask);
 conn_fn = fullfile(data_folder, 'conductance_matrix.mat');
 save(conn_fn, 'conn');
