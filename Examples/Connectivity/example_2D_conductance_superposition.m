@@ -5,10 +5,14 @@
 % Author: Aina Frau-Pascual
 
 
-plot_potentials = false;
-use_phantom = true;
+% Set plot_potentials to true if you want to plot all potentials
+% WARNING: it is time consuming
+plot_potentials = false;   
 
-% Input image
+% Change use_phantom flag to use a different input image
+use_phantom = true;        
+
+% Input image: choose among the two (default: phantom)
 if use_phantom
     % input phantom in very low resolution
     im = phantom(10);
@@ -20,7 +24,6 @@ else
     im(:, 1) = 1;
     im(3, 3) = 1;
 end
-figure(101); imagesc(im, [0,1]); colorbar; title('Image')
 
 % Construct mesh structure
 Lx = size(im, 1); % domain length
@@ -44,12 +47,16 @@ M = Mdiff + Mbc; % matrix of coefficient for central scheme
 Nx = Dave.domain.dims(1);
 Ny = Dave.domain.dims(2);
 G = reshape(1:(Nx+2)*(Ny+2), Nx+2, Ny+2);
-mnx = Nx*Ny;	mny = Nx*Ny;
+mnx = Nx*Ny;	
+mny = Nx*Ny;
 rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 
-p0 = rowx_index(round(mnx/2)); % choose a sink
-
+% Compute conductance for all pairs of voxels source-sink: O(N)
+% First you choose your sink p0
+p0 = rowx_index(round(mnx/2)); 
+% You will have to save all the potentials to be able to combine them
+% It is a compromise time / memory used
 potentials = zeros(Nx, Ny, mny);
 i = 1;
 for p2=rowy_index'
@@ -60,18 +67,12 @@ for p2=rowy_index'
         c = solvePDE(meshstruct, M, RHSbc0);  % solve for the central scheme
         potentials(:,:,i) = c.value(2:end-1, 2:end-1);
         if plot_potentials
-            figure(102); image(c.value(2:end-1, 2:end-1),'CDataMapping','scaled'); 
-            colorbar; title('Potential'); pause(0.2);
+            figure(101); image(c.value(2:end-1, 2:end-1),'CDataMapping','scaled'); 
+            colorbar; title('Potentials'); xlabel('x'); ylabel('y');
+            pause(0.2);
         end
     end
     i = i + 1;
-end
-
-if plot_potentials
-    figure(103); title('All potentials'); 
-    for i=1:mny
-        subplot(Nx, Ny, i); imagesc(potentials(:,:,i)); colorbar; 
-    end
 end
 
 conduct0 = zeros(mnx, mny);
@@ -86,15 +87,26 @@ for p1=1:mnx
         end
     end
 end
+conduct0(isnan(conduct0)) = 0;
+conduct0 = abs(conduct0);
+
 
 % Plot results
-conduct0(isnan(conduct0)) = 0;
-figure(104); imagesc(abs(conduct0)); colorbar; title('Conductance')
+figure; 
+set(gcf,'position', [300, 300, 1100, 400])
+subplot(1,2,1), image(im,'CDataMapping','scaled'); 
+colorbar; title('Original image'); xlabel('x'); ylabel('y');
+subplot(1,2,2), 
+image(conduct0, 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance matrix derived from original image');
+xlabel('voxel i'); ylabel('voxel s');
 
 
 %%
 % To compare results with pointbypoint case
-comparison = abs(conduct0) - abs(conductance(rowx_index,rowy_index));
+% generated using example_2D_conductance_pointbypoint.m
+comparison = conduct0 - conductance(rowx_index,rowy_index);
 sum(comparison(:))
-figure(105); imagesc(comparison); colorbar;
+figure; imagesc(comparison); colorbar; xlabel('voxel i'); ylabel('voxel s');
+title('Comparison of point-by-point and using superposition')
 

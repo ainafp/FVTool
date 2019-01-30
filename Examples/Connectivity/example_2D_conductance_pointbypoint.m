@@ -5,7 +5,7 @@
 
 % Set plot_potentials to true if you want to plot all potentials
 % WARNING: it is time consuming
-plot_potentials = true;   
+plot_potentials = false;   
 
 % Change use_phantom flag to use a different input image
 use_phantom = true;        
@@ -50,7 +50,7 @@ mny = Nx*Ny;
 rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 
-% Compute conductance for all pairs of voxels source-sink
+% Compute conductance for all pairs of voxels: O(N^2)
 conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
