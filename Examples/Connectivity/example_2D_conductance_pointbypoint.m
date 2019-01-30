@@ -50,7 +50,7 @@ mny = Nx*Ny;
 rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 
-% Compute conductance
+% Compute conductance for all pairs of voxels source-sink
 conductance = zeros(size(RHSbc, 1), size(RHSbc, 1));
 for p1=rowx_index'
     for p2=rowy_index'
