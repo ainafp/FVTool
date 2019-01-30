@@ -68,6 +68,8 @@ if compute_connmatrix
 end
 
 
+%% INTERACTIVE plotting of potentials
+
 % Conductance map
 figure(101); image(im,'CDataMapping','scaled'); colorbar;
 

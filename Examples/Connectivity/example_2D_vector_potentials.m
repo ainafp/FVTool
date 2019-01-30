@@ -3,19 +3,17 @@
 % Author: Aina Frau-Pascual
 
 
-% Input image
-im = phantom(10, 10);
-
 % Construct mesh structure and boundary conditions
-Lx = size(im, 1); % domain length
-Nx = size(im, 1); % number of cells
-Ly = size(im, 2); % domain length
-Ny = size(im, 2); % number of cells
+Lx = 10; % domain length
+Nx = 10; % number of cells
+Ly = 10; % domain length
+Ny = 10; % number of cells
 meshstruct = createMesh2D(Nx, Ny, Lx, Ly); % construct mesh
 x = meshstruct.cellcenters.x; % extract the cell center positions
 BC = createBC(meshstruct); % all Neumann boundary condition structure
 [Mbc, RHSbc] = boundaryCondition(BC); % boundary condition discretization
 
+% In this example, I input tensors here manually
 D = createFaceVariable(meshstruct, 0.0);
 D.yvalue = [1,2,3,4,5,6,7,8,9,8,7; 7,6,5,4,3,2,1,2,3,4,7;
             5,6,7,8,9,8,7,6,5,4,7; 3,2,1,2,3,4,5,6,7,8,7;
@@ -45,3 +43,14 @@ conductance = 1 / (c.value(p1) - c.value(p2));
 
 % Plot results
 figure; image(c.value, 'CDataMapping', 'scaled'); colorbar;
+
+% Plot results
+figure; 
+set(gcf,'position', [300, 300, 1100, 400])
+subplot(1,2,1), image(D.xvalue + D.yvalue,'CDataMapping','scaled'); 
+colorbar; title('Original image (sum tensor dim)'); xlabel('x'); ylabel('y');
+subplot(1,2,2), 
+image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance matrix derived from original image');
+xlabel('voxel i'); ylabel('voxel s');
+
