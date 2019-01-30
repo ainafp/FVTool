@@ -33,8 +33,13 @@ RHSbc(p2) = -1;
 c = solvePDE(meshstruct, M, RHSbc); % solve for the central scheme
 
 % Compute conductance
-conductance = 1 / (c.value(p1) - c.value(p2));
+conductance = 1 / (c.value(p1) - c.value(p2))
 
 % Plot results
 figure; image(c.value,'CDataMapping','scaled'); colorbar;
+xlabel('x'); ylabel('y');
+title({'Potential map between source and sink,', ...
+      ['with conductance between source-sink:', num2str(conductance)]});
+ax = gca;
+ax.FontSize = 10;
 
