@@ -44,5 +44,9 @@ potential2 = (c.value(p2) - c.value(p3));
 potential3 = (c.value(p1) - c.value(p3));
 
 % Compare that they are equal
-potential1 + potential2
-potential3
+disp('Are the sum of the potentials between (p1, p2) and (p2, p3) equal to the potential between (p1, p3)?')
+disp(['potential (p1, p2) + potential (p2, p3) = ', num2str(potential1 + potential2)])
+disp(['potential (p1, p3) = ', num2str(potential3)])
+if ismembertol(potential1 + potential2, potential3, 0.001)
+    disp('They are equal!')
+end
