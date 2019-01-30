@@ -3,8 +3,6 @@
 % Author: Aina Frau-Pascual
 
 
-plot_potentials = false;
-
 % Input image
 im = zeros(3) + 0.0;
 im(1, :) = 0.8;
@@ -35,7 +33,8 @@ M = Mdiff + Mbc; % matrix of coefficient for central scheme
 
 % Define mask
 G = reshape(1:(Nx+2)*(Ny+2), Nx+2, Ny+2);
-mnx = Nx*Ny;	mny = Nx*Ny;
+mnx = Nx*Ny;	
+mny = Nx*Ny;
 rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 
@@ -59,10 +58,6 @@ for p1=1:mnx
     for p2=1:mny
         if p2>p1
             pot = potentials(:,:,p2) - potentials(:,:,p1);
-            if plot_potentials
-                figure(102); image(pot, 'CDataMapping', 'scaled'); colorbar;
-                pause(0.2);
-            end
             [a1, b1] = ind2sub(size(pot), p1);
             [a2, b2] = ind2sub(size(pot), p2);
             conduct0(p1, p2) = 1 / (pot(a1, b1) - pot(a2, b2));
@@ -70,13 +65,25 @@ for p1=1:mnx
         end
     end
 end
-
 conduct0(isnan(conduct0)) = 0;
-figure; image(abs(conduct0), 'CDataMapping', 'scaled'); colorbar
+conduct0 = abs(conduct0);
+
+
+% Plot results
+figure; 
+set(gcf,'position', [300, 300, 1100, 400])
+subplot(1,2,1), image(sum(im,3),'CDataMapping','scaled'); 
+colorbar; title('Original image (sum tensor dim)'); xlabel('x'); ylabel('y');
+subplot(1,2,2), 
+image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance matrix derived from original image');
+xlabel('voxel i'); ylabel('voxel s');
 
 
 %%
 % Compare to point-by-point matrix
-comparison = abs(conduct0) - abs(conductance(rowx_index,rowy_index));
+comparison = conduct0 - conductance(rowx_index,rowy_index);
 sum(sum(comparison))
-figure; image(comparison, 'CDataMapping', 'scaled'); colorbar
+figure; image(comparison, 'CDataMapping', 'scaled'); 
+colorbar; xlabel('voxel i'); ylabel('voxel s');
+title('Comparison of point-by-point and using superposition')

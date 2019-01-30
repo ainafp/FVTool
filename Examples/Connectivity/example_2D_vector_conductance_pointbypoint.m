@@ -32,7 +32,8 @@ M = Mdiff + Mbc; % matrix of coefficient for central scheme
 
 % Define mask
 G = reshape(1:(Nx+2)*(Ny+2), Nx+2, Ny+2);
-mnx = Nx*Ny;	mny = Nx*Ny;
+mnx = Nx*Ny;	
+mny = Nx*Ny;
 rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1); % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1); % main diagonal y
 
@@ -50,7 +51,15 @@ for p1=rowx_index'
         end
     end
 end
+conductance(isnan(conductance)) = 0;
+
 
 % Plot results
-conductance(isnan(conductance)) = 0;
-figure; image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); colorbar
+figure; 
+set(gcf,'position', [300, 300, 1100, 400])
+subplot(1,2,1), image(sum(im,3),'CDataMapping','scaled'); 
+colorbar; title('Original image (sum tensor dim)'); xlabel('x'); ylabel('y');
+subplot(1,2,2), 
+image(conductance(rowx_index,rowy_index), 'CDataMapping', 'scaled'); 
+colorbar; title('Conductance matrix derived from original image');
+xlabel('voxel i'); ylabel('voxel s');

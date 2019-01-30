@@ -5,8 +5,8 @@
 % Input image
 im = phantom(100);
 
+% Change compute_connmatrix flag to true if you want to compute conductance matrix
 compute_connmatrix = false; 
-% change to true if you want to compute whole conductance matrix
 
 % Construct mesh structure
 Lx = size(im, 1);                % domain length
@@ -36,8 +36,7 @@ rowx_index = reshape(G(2:Nx+1,2:Ny+1),mnx,1);      % main diagonal x
 rowy_index = reshape(G(2:Nx+1,2:Ny+1),mny,1);      % main diagonal y
 
 % Compute conductance
-p0 = rowx_index(round(mnx/2));
-
+p0 = rowx_index(round(mnx/2)); % choose sink
 potentials = zeros(Nx, Ny, mny);
 i = 1;
 for p2=rowy_index'
@@ -68,12 +67,12 @@ if compute_connmatrix
     figure(100); imagesc(abs(conduct0), [-1,1]); colorbar;
 end
 
-%%
 
 % Conductance map
 figure(101); image(im,'CDataMapping','scaled'); colorbar;
 
-% Interactive conductance map
+% Interactive conductance map: click in a point to see the potential
+% map from that point to the rest
 for i=1:100
     figure(101);
     [x, y] = ginput(1);
