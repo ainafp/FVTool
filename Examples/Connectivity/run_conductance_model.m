@@ -1,9 +1,9 @@
-function run_global_connectivity(data_folder)
-% Compute global connectivity from tensors computed with DSIstudio
+function run_conductance(data_folder)
+% Compute conductance maps from tensors computed with DSIstudio
 % This is a generic example.
 % Adapt paths and file names to your own!
 %
-% Example: run_global_connectivity(your_path)
+% Example: run_conductance_model(your_path)
 %
 % Author: Aina Frau-Pascual
 

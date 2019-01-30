@@ -1,8 +1,8 @@
-function run_global_connectivity_hcp(varargin)
-% Compute global connectivity from tensors computed with DSIstudio
-% Adapt paths and file names to your own
+function run_condutance_adni(subject)
+% Compute conductance maps from tensors computed with DSIstudio
+% Adapt paths and file names to your own!
 %
-% Example: run_global_connectivity_hcp(100307)
+% Example: run_global_connectivity_adni(003_S_2374)
 %
 % Author: Aina Frau-Pascual
 
@@ -16,13 +16,19 @@ folder_nii='Code/NIFTI';
 addpath(genpath(folder_nii));
 
 % Subject name
-args = varargin{:};
-subject = num2str(args)
+%args = varargin{:};
+%subject = char(args(1))
 
 % Data folder
-hcp_folder = 'Data/HCP_WashU-UMN/';
-subject_folder = fullfile([subject '_3T_Diffusion_preproc'], subject, 'T1w');
-data_folder = fullfile(hcp_folder, subject_folder, 'Diffusion');
+main_folder = 'Data/ADNI/'
+d = dir([main_folder subject '/*']);
+dti_folder = setdiff({d.name},{'.','..'});
+d = dir([main_folder subject '/' dti_folder{1} '/*']);
+date_folder = setdiff({d.name},{'.','..'});
+d = dir([main_folder subject '/' dti_folder{1} '/' date_folder{1} '/*']);
+study_folder = setdiff({d.name},{'.','..'});
+spost_folder = fullfile(subject, dti_folder{1}, date_folder{1}, study_folder{1});
+data_folder = fullfile(main_folder, spost_folder, 'Preprocessed');
 
 
 %%% Prepare inputs
@@ -33,7 +39,7 @@ file_name = fullfile(data_folder, 'data.src.gz.012fy.dti.fib.gz');
 im_size = size(im);
 
 % Parcellation
-atlas_name = fullfile(data_folder, '..', 'wmparc_1.25.nii.gz'); % from FreeSurfer
+atlas_name = fullfile(data_folder, 'wmparc_dwi_masked.nii.gz');
 atlas_obj = load_nii(atlas_name);
 atlas = double(atlas_obj.img);
 atlas = rot90(atlas,2);
@@ -85,15 +91,14 @@ sprintf('potentials computed')
 
 % Compute conductance matrix
 conn = computeConductanceMatrix(potentials, atlas.*mask);
-conn_fn = fullfile(data_folder, 'conductance_matrix.mat');
+conn_fn = fullfile(data_folder, 'global_connectivity_matrix.mat');
 save(conn_fn, 'conn');
 
 toc
 
 % Save results
-filename = fullfile(data_folder, 'conductance.mat');
+filename = fullfile(data_folder, 'global_connectivity.mat');
 save(filename, '-v7.3')
 sprintf('file saved')
 
 end
-
