@@ -23,6 +23,4 @@ Dave = arithmeticMeanTensor(D); % convert a cell variable to face variable
 Mdiff = diffusionTermTensor2D(Dave);
 M = Mdiff + Mbc; % matrix of coefficient for central scheme
 
-%figure(104); imagesc(Mbc); colormap jet; colorbar;
-
 end

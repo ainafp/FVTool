@@ -1,4 +1,4 @@
-function [M, RHSbc] = computeDiffusionMatrix3D(im, voxel_size)
+function [meshstruct, D, M, RHSbc] = computeDiffusionMatrix3D(im, voxel_size)
 % Compute Diffusion Matrix M from mesh 3D of tensors
 %
 % Author: Aina Frau-Pascual
