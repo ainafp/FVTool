@@ -1,4 +1,4 @@
-function interactiveConductance3Dslice(fa, mask, dim_size, potentials, mask_index, dim, slice)
+function interactiveConductance3Dslice(fa, dim_size, potentials, mask_index, dim, slice)
 % Interactive conductance map from 3D data, computing one slice
 %
 % Author: Aina Frau-Pascual
@@ -7,15 +7,12 @@ function interactiveConductance3Dslice(fa, mask, dim_size, potentials, mask_inde
 % Conductance map
 if dim==3
     fa2 = squeeze(fa(:,:,slice));
-    mask0 = squeeze(mask(:,:,slice));
     dimx_size = dim_size([1,2]);
 elseif dim==2
     fa2 = squeeze(fa(:,slice,:));
-    mask0 = squeeze(mask(:,slice,:));
     dimx_size = dim_size([1,3]);
 else
     fa2 = squeeze(fa(slice,:,:));
-    mask0 = squeeze(mask(slice,:,:));
     dimx_size = dim_size([2,3]);
 end
 mnx = prod(dimx_size);
