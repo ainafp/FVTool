@@ -1,4 +1,4 @@
-function run_conductance(data_folder)
+function run_conductance_model(data_folder)
 % Compute conductance maps from tensors computed with DSIstudio
 % This is a generic example.
 % Adapt paths and file names to your own!
@@ -80,14 +80,14 @@ sprintf('potentials computed')
 
 % Compute connectivity matrix
 conn = computeConductanceMatrix(potentials, atlas.*mask);
-conn_fn = fullfile(data_folder, 'global_connectivity_matrix.mat');
+conn_fn = fullfile(data_folder, 'conductance_matrix.mat');
 save(conn_fn, 'conn');
 
 toc
 
 % Save results if you want to look at the potentials
 % WARNING! The file will be big
-filename = fullfile(data_folder, 'global_connectivity.mat');
+filename = fullfile(data_folder, 'conductance.mat');
 save(filename, '-v7.3')
 sprintf('file saved')
 
