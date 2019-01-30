@@ -1,5 +1,5 @@
 function interactiveConductance3Dslice(fa, mask, dim_size, potentials, mask_index, dim, slice)
-% Interactive conductance map
+% Interactive conductance map from 3D data, computing one slice
 %
 % Author: Aina Frau-Pascual
 
@@ -28,7 +28,7 @@ for i=1:100
     a1 = round(x);
     b1 = round(y);
     aux1 = sub2ind(dimx_size, a1, b1);
-    p1 = find(mask_index==aux1)
+    p1 = find(mask_index==aux1);
     
     c = zeros(dimx_size);
     for p3=1:mnx
