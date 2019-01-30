@@ -10,8 +10,8 @@
 
 % Alternatively, you could generate your own tensors and load them as
 % im = (im_x, im_y, tensor_x, tensor_y)
-folder = '/autofs/space/galata_001/users/afrau/Data';
-file_name = fullfile(folder, '/Fibercup/acq-averaged_b-1500.nii.gz.src.gz.012fz.dti.fib.gz'); 
+folder = 'your_folder';
+file_name = fullfile(folder, '/Fibercup/data.src.gz.012fz.dti.fib.gz'); 
 [fa0, md, im0, voxel_size] = read_fib(file_name);
 
 % Choose to use the whole image '0' (default), a medium size image '1' 
