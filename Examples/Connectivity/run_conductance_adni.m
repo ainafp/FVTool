@@ -65,9 +65,9 @@ clear mask_obj mask0 mask2
 %%% Compute global connectivity
 
 % Compute diffusion matrix
-[M, RHSbc] = computeDiffusionMatrix3D(im.*mask, voxel_size);
+[meshstruct, D, M, RHSbc] = computeDiffusionMatrix3D(im.*mask, voxel_size);
 sprintf('diffusion matrix computed')
-clear meshstruct im
+clear meshstruct im D
 
 tic 
 
