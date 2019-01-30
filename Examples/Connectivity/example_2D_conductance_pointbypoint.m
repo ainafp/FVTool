@@ -5,7 +5,7 @@
 
 % Set plot_potentials to true if you want to plot all potentials
 % WARNING: it is time consuming
-plot_potentials = false;   
+plot_potentials = true;   
 
 % Change use_phantom flag to use a different input image
 use_phantom = true;        
@@ -63,7 +63,7 @@ for p1=rowx_index'
             conductance(p2, p1) = conductance(p1, p2);
             if ~isnan(conductance(p1, p2)) && ~isinf(conductance(p1, p2)) && plot_potentials
                 figure(100); image(c.value(2:end-1,2:end-1), 'CDataMapping', 'scaled'); 
-                colorbar; title('Potentials')
+                colorbar; title('Potentials'); xlabel('x'); ylabel('y');
                 pause(.2)
             end
         end
