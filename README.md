@@ -21,7 +21,7 @@ You can find a generic example for structural brain connectivity in [Examples/Co
 
 ### Reference
 
-This work has been published in NeuroImage:
+This work is in press in NeuroImage:
 
 [Frau-Pascual, Aina, Morgan Fogarty, Bruce Fischl, Anastasia Yendiki, and Iman Aganj. "Quantification of structural brain connectivity via a conductance model." NeuroImage (2019).](https://www.sciencedirect.com/science/article/pii/S1053811919300333)
 
