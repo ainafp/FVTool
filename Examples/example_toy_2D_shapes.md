@@ -16,7 +16,7 @@ fa = sum(sum(im,4),3);
 interactiveConductance2D(fa, [imx, imy], potentials, mask_index);
 ```
 <p align="center">
-<img src="Images/isotropic_tensors.png" width="150" hspace="20"> <img src="Images/iso.png" width="200"> <img src="Images/iso2.png" width="200">
+<img src="Images/isotropic_tensors.png" width="150" hspace="40"> <img src="Images/iso.png" width="200"> <img src="Images/iso2.png" width="200">
 </p>
 
 For a cross:
@@ -37,7 +37,7 @@ fa = sum(sum(im,4),3);
 interactiveConductance2D(fa, [imx, imy], potentials, mask_index);
 ```
 <p align="center">
-<img src="Images/cross_tensors.png" width="150">      <img src="Images/cross.png" width="200"> <img src="Images/cross2.png" width="200">
+<img src="Images/cross_tensors.png" width="150" hspace="40"> <img src="Images/cross.png" width="200"> <img src="Images/cross2.png" width="200">
 </p>
 
 For a star:
@@ -58,7 +58,7 @@ fa = sum(sum(im,4),3);
 interactiveConductance2D(fa, [imx, imy], potentials, mask_index);
 ```
 <p align="center">
-<img src="Images/star_tensors.png" width="150">      <img src="Images/star.png" width="200"> <img src="Images/star2.png" width="200">
+<img src="Images/star_tensors.png" width="150" hspace="40"> <img src="Images/star.png" width="200"> <img src="Images/star2.png" width="200">
 </p>
 
 For a circle:
@@ -80,5 +80,5 @@ fa = sum(sum(im,4),3);
 interactiveConductance2D(fa, [imx, imy], potentials, mask_index);
 ```
 <p align="center">
-<img src="Images/circular_tensors.png" width="150">      <img src="Images/circle2.png" width="200"> <img src="Images/circle3.png" width="200">
+<img src="Images/circular_tensors.png" width="150" hspace="40"> <img src="Images/circle2.png" width="200"> <img src="Images/circle3.png" width="200">
 </p>
