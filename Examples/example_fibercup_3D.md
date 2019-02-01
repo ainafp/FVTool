@@ -33,7 +33,6 @@ end
 im = squeeze(im0(ax, ay, :, :, :));
 fa = fa0(ax, ay, :);
 ```
-You will get these images: 
 
 Now run this code to compute the potentials following the DWI tensors. This computation takes a while!
 ```
