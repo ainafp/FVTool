@@ -10,8 +10,8 @@
 
 % Alternatively, you could generate your own tensors and load them as
 % im = (im_x, im_y, im_z, tensor_x, tensor_y)
-folder = '/autofs/space/galata_001/users/afrau/Data';
-file_name = fullfile(folder, '/Fibercup/acq-averaged_b-1500.nii.gz.src.gz.012fz.dti.fib.gz'); 
+folder = 'your_folder';
+file_name = fullfile(folder, 'data.nii.gz.src.gz.012fz.dti.fib.gz'); 
 [fa0, md, im0, voxel_size] = read_fib(file_name);
 
 % Choose to use the whole image '0' (default), a medium size image '1' 
@@ -30,11 +30,13 @@ end
 im = squeeze(im0(ax, ay, :, :, :));
 fa = fa0(ax, ay, :);
 
-% Compute conductance and plot it interactively
+% Compute potentials
 Nx = size(im, 1); 
 Ny = size(im, 2); 
 Nz = size(im, 3); 
 [meshstruct, D, M, RHSbc] = computeDiffusionMatrix3D(im, size(im));
 [potentials, mask_index] = computePotentials3D(D, meshstruct, M, RHSbc);
+
+% Plot conductance interactively
 interactiveConductance3Dslice(fa, [Nx,Ny,Nz], potentials, mask_index, 3, 2);
 
