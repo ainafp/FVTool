@@ -9,14 +9,14 @@
 %dsi_studio_run --action=rec --source=data.src.gz --mask=nodif_brain_mask.nii.gz --method=1 --output_tensor=1 --output_dif=1 --output=data.src.gz.012fy.dti.fib.gz';
 
 % Alternatively, you could generate your own tensors and load them as
-% im = (im_x, im_y, tensor_x, tensor_y)
-folder = 'your_folder';
-file_name = fullfile(folder, '/Fibercup/data.src.gz.012fz.dti.fib.gz'); 
+% im = (im_x, im_y, im_z, tensor_x, tensor_y)
+folder = '/autofs/space/galata_001/users/afrau/Data';
+file_name = fullfile(folder, '/Fibercup/acq-averaged_b-1500.nii.gz.src.gz.012fz.dti.fib.gz'); 
 [fa0, md, im0, voxel_size] = read_fib(file_name);
 
 % Choose to use the whole image '0' (default), a medium size image '1' 
 % or a small size image '2'
-image_size = 1;
+image_size = 0;
 
 % Load the image you chose, with its corresponding FA map
 % We are here removing one dimension a bit roughly, only for testing
