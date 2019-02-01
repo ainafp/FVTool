@@ -1,6 +1,6 @@
 ## Example 2: Compute conductance of Fibercup data, and plot it interactively
 
-Code in [Examples/Connectivity/example_3D_tensor_fibercup.m](Examples/Connectivity/example_3D_tensor_fibercup.m)
+Code in [Examples/Connectivity/example_3D_tensor_fibercup.m](Connectivity/example_3D_tensor_fibercup.m)
 
 Data can be downloaded in [www.tractometer.org](http://www.tractometer.org/original_fibercup/data/).
 In this example, we use the file [acq-averaged_b-1500.nii.gz](http://www.tractometer.org/downloads/downloads/fibercup/dwi/acq-averaged_b-1500.nii.gz)
