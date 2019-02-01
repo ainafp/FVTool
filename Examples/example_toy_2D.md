@@ -47,15 +47,15 @@ interactiveConductance3Dslice(fa, [Nx,Ny,Nz], potentials, mask_index, 3, 2);
 ```
 After running this, an FA image will appear. 
 <p align="center">
-<img src="Images/fibercup.eps" width="300">
+<img src="Images/fibercup.png" width="300">
 </p>
 Click on a voxel in the FA image and wait. A conductance map from that point to the rest of the points will be generated. See here some examples. The voxel that we clicked is the reddest one.
 <p align="center">
-<img src="Images/fibercup0_point1.png" width="200"> <img src="Images/fibercup0_point2.png" width="200"> <img src="Images/fibercup0_point3.png" width="200">
+<img src="Images/fibercup0_point1.png" width="300"> <img src="Images/fibercup0_point2.png" width="300"> <img src="Images/fibercup0_point3.png" width="300">
 </p>
 For the medium image size, the results will look like:
 <p align="center">
-<img src="Images/fibercup0_conductance.png" width="200"> <img src="Images/fibercup0_conductance1.png" width="200"> <img src="Images/fibercup0_conductance2.png" width="200">
+<img src="Images/fibercup0_conductance.png" width="300"> <img src="Images/fibercup0_conductance1.png" width="300"> <img src="Images/fibercup0_conductance2.png" width="300">
 </p>
 
 
