@@ -19,8 +19,8 @@ instead of voxels, by distributing the currents among the ROI voxels.
 
 You can find 
 * a generic example for structural brain connectivity in [Examples/Connectivity/run_conductance_model.m](Examples/Connectivity/run_conductance_model.m)
-* and example of how to interactively plot conductance using the Fibercup data [here](Examples/example_toy_2D.md).
-* code with 2D toy examples with tensors creating different conductance 'shapes' in [Examples/Connectivity/example_2D_tensor_test_cases.m](Examples/Connectivity/example_2D_tensor_test_cases.m)
+* toy examples with different shapes, and plot conductance interactively [here](Examples/example_toy_2D_shapes.md).
+* an example of how to interactively plot conductance using the Fibercup data [here](Examples/example_fibercup_3D.md).
 
 ### Reference
 
