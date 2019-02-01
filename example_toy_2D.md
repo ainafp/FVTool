@@ -12,7 +12,7 @@ dsi_studio_run --action=rec --source=data.src.gz --mask=nodif_brain_mask.nii.gz 
 ```
 The output of these instructions will be the file data.src.gz.012fy.dti.fib.gz, and contains the tensors resulting from the DWI data:
 <p align="center">
-<img src="fibercup.png" width="300">
+<img src="Examples/Images/fibercup.png" width="300">
 </p>
 Alternatively, you could generate your own tensors and load them as a volume of dimensions (im_x, im_y, im_z, tensor_x, tensor_y).
 
@@ -47,11 +47,11 @@ interactiveConductance3Dslice(fa, [Nx,Ny,Nz], potentials, mask_index, 3, 2);
 ```
 Afterrunning this, an FA image will appear. 
 <p align="center">
-<img src="fibercup.eps" width="300">
+<img src="Examples/Images/fibercup.eps" width="300">
 </p>
 Click on a voxel in the FA image and wait. A conductance map from that point to the rest of the points will be generated. See here some examples. The voxel that we clicked is the reddest one.
 <p align="center">
-<img src="fibercup0_point1.eps" width="100"> <img src="fibercup0_point2.eps" width="100"> <img src="fibercup0_point3.eps" width="100">
+<img src="Examples/Images/fibercup0_point1.eps" width="100"> <img src="Examples/Images/fibercup0_point2.eps" width="100"> <img src="Examples/Images/fibercup0_point3.eps" width="100">
 </p>
 
 
