@@ -16,7 +16,7 @@ fa = sum(sum(im,4),3);
 interactiveConductance2D(fa, [imx, imy], potentials, mask_index);
 ```
 <p align="center">
-<img src="Images/isotropic_tensors.png" width="200"> <img src="Images/iso.png" width="200"> <img src="Images/iso2.png" width="200">
+<img src="Images/isotropic_tensors.png" width="150"> <img src="Images/iso.png" width="200"> <img src="Images/iso2.png" width="200">
 </p>
 
 For a cross:
