@@ -19,7 +19,7 @@ instead of voxels, by distributing the currents among the ROI voxels.
 
 You can find 
 * a generic example for structural brain connectivity in [Examples/Connectivity/run_conductance_model.m](Examples/Connectivity/run_conductance_model.m)
-* and example of how to interactively plotting conductance using the Fibercup data [here](Examples/example_toy_2D.md).
+* and example of how to interactively plot conductance using the Fibercup data [here](Examples/example_toy_2D.md).
 * code with 2D toy examples with tensors creating different conductance 'shapes' in [Examples/Connectivity/example_2D_tensor_test_cases.m](Examples/Connectivity/example_2D_tensor_test_cases.m)
 
 ### Reference
@@ -30,5 +30,5 @@ This work is in press in NeuroImage:
 
 ### Inspiration
 
-This toolbox is a fork of FVTool, and was extended for dealing with tensors and 
+This toolbox is a fork of [FVTool](https://github.com/simulkade/FVTool), and was extended for dealing with tensors and 
 modified for its use in structural connectivity settings.
