@@ -2,7 +2,7 @@
 
 Code in [Examples/Connectivity/example_3D_tensor_fibercup.m](Connectivity/example_3D_tensor_fibercup.m)
 
-Data can be downloaded in [www.tractometer.org](http://www.tractometer.org/original_fibercup/data/).
+Data can be downloaded from [www.tractometer.org](http://www.tractometer.org/original_fibercup/data/).
 In this example, we use the file [acq-averaged_b-1500.nii.gz](http://www.tractometer.org/downloads/downloads/fibercup/dwi/acq-averaged_b-1500.nii.gz)
 
 First we need to run DSI Studio to get the tensors, given some inputs: DWI data (data.nii.gz, bvals, bvecs), and a brain mask (nodif_brain_mask.nii.gz)
