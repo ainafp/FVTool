@@ -12,11 +12,11 @@ dsi_studio_run --action=rec --source=data.src.gz --mask=nodif_brain_mask.nii.gz 
 ```
 The output of these instructions will be the file data.src.gz.012fy.dti.fib.gz, and contains the tensors resulting from the DWI data:
 <p align="center">
-<img src="Examples/Images/fibercup_fa.png" width="300">
+<img src="Examples/Images/fibercup.png" width="300">
 </p>
 Alternatively, you could generate your own tensors and load them as a volume of dimensions (im_x, im_y, im_z, tensor_x, tensor_y).
 
-Load the data:
+With the code provided, load the data in Matlab: 
 ```
 file_name = fullfile(your_folder, 'data.nii.gz.src.gz.012fz.dti.fib.gz'); 
 [fa0, md, im0, voxel_size] = read_fib(file_name);
@@ -47,15 +47,15 @@ interactiveConductance3Dslice(fa, [Nx,Ny,Nz], potentials, mask_index, 3, 2);
 ```
 After running this, an FA image will appear. 
 <p align="center">
-<img src="Images/fibercup.png" width="300">
+<img src="Images/fibercup_fa.png" width="300">
 </p>
 Click on a voxel in the FA image and wait. A conductance map from that point to the rest of the points will be generated. See here some examples. The voxel that we clicked is the reddest one.
 <p align="center">
-<img src="Images/fibercup0_point1.png" width="300"> <img src="Images/fibercup0_point2.png" width="300"> <img src="Images/fibercup0_point3.png" width="300">
+<img src="Images/fibercup0_point1.png" width="250"> <img src="Images/fibercup0_point2.png" width="250"> <img src="Images/fibercup0_point3.png" width="250">
 </p>
 For the medium image size, the results will look like:
 <p align="center">
-<img src="Images/fibercup1_conductance.png" width="300"> <img src="Images/fibercup1_conductance1.png" width="300"> <img src="Images/fibercup1_conductance2.png" width="300">
+<img src="Images/fibercup1_conductance.png" width="250"> <img src="Images/fibercup1_conductance1.png" width="250"> <img src="Images/fibercup1_conductance2.png" width="250">
 </p>
 
 
