@@ -60,10 +60,13 @@ clear meshstruct im D
 tic 
 
 % Compute currents per ROI
+% Here, we create a matrix with all the vectors of pairs source-sink
 RHSbcM = computeCurrentsROI3D(im_size(1:3), M, sparse(RHSbc), atlas.*mask);
 
 % Compute inversion
 % WARNING! Make sure you have enough RAM to do the inversion
+% We make the inversion here directly instead of using computePotentials3D()
+% because we want to clear variables as soon as possible
 x = M\RHSbcM;
 sprintf('inversion computed')
 clear M RHSbc RHSbcM
