@@ -36,14 +36,14 @@ fa = fa0(ax, ay, :);
 
 Now run this code to compute the potentials following the DWI tensors. This computation takes a while!
 ```
-Nx = size(im, 1); 
-Ny = size(im, 2); 
-Nz = size(im, 3); 
 [meshstruct, D, M, RHSbc] = computeDiffusionMatrix3D(im, size(im));
 [potentials, mask_index] = computePotentials3D(D, meshstruct, M, RHSbc);
 ```
 Now you have computed the potentials. To look at the conductance and plot the results interactively, choose a dimension ('3' indicates the z dimension) and a slice to plot, and run:
 ```
+Nx = size(im, 1); 
+Ny = size(im, 2); 
+Nz = size(im, 3); 
 dimension = 3;
 slice = 2; 
 interactiveConductance3Dslice(fa, [Nx,Ny,Nz], potentials, mask_index, dimension, slice);
