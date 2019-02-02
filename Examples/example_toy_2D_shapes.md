@@ -2,7 +2,7 @@
 
 Code in [Examples/Connectivity/example_2D_tensor_test_cases.m](Connectivity/example_2D_tensor_test_cases.m)
 
-In this example, we generate data ourselves with 2D tensors making different shapes, and we can check how our condutance work interactively: click on a voxel and an image of the conductance map from that point to the rest will be generated.
+In this example, we generate data ourselves with 2D tensors making different shapes, and we can check how our condutance works interactively: click on a voxel and an image of the conductance map from that point to the rest will be generated.
 
 For isotropic tensors:
 ```
