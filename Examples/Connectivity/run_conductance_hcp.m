@@ -10,7 +10,7 @@ function run_conductance_hcp(varargin)
 %%% Load folders and code
 
 % Add code folders to path
-folder='Code/FVTool';
+folder='Code/FVT4DWI';
 addpath(genpath(folder));
 folder_nii='Code/NIFTI';
 addpath(genpath(folder_nii));
