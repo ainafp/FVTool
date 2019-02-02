@@ -13,7 +13,7 @@ function run_conductance_model(data_folder)
 % Add code folders to path
 folder_nii='NIFTI';
 addpath(genpath(folder_nii));
-folder_nii='FVTool';
+folder_nii='FVT4DWI';
 addpath(genpath(folder_nii));
 
 
