@@ -59,7 +59,7 @@ clear mask_obj mask0 mask1 mask2
 % Compute diffusion matrix
 [M, RHSbc] = computeDiffusionMatrix3D(im.*mask, voxel_size);
 sprintf('diffusion matrix computed')
-clear meshstruct im
+%clear meshstruct im
 
 % Compute currents per ROI
 im_size = size(im);
