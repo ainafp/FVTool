@@ -14,11 +14,20 @@ addpath(genpath(folder_nii));
 %%% Prepare inputs
 
 % Input tensors. In this example from DSI Studio
-file_name = fullfile(data_folder, 'data.src.gz.012fy.dti.fib.gz');
-[fa, md, im, voxel_size]= read_fib(file_name);
+%file_name = fullfile(data_folder, 'data.src.gz.012fy.dti.fib.gz');
+%[fa, md, im, voxel_size]= read_fib(file_name);
+fa = load_nii('FSL_dtifit_FA.nii.gz');
+fa = fa.img;
+md = load_nii ('FSL_dtifit_MD.nii.gz');
+md = md.img;
+I = load_nii ('FSL_dtifit_tensor.nii.gz');
+im = load_nii ('FSL_dtifit_tensor.nii.gz');
+im = im.img;
+voxel_size = I.hdr.dime.pixdim
+
 
 % Parcellation
-atlas_name = fullfile(data_folder, 'your_atlas.nii.gz');
+atlas_name = fullfile(data_folder, 'shen_2mm_268_parcellation.nii.gz');
 atlas_obj = load_nii(atlas_name);
 atlas = double(atlas_obj.img);
 atlas = rot90(atlas);
@@ -36,7 +45,7 @@ mask_obj = load_nii(mask_name);
 mask1 = double(mask_obj.img);
 mask1 = rot90(mask1);
 % mask of GM from your parcellation
-mask2 = atlas0;
+mask2 = atlas;
 mask2(mask2>0) = 1;
 % mask of WM and GM together
 mask = mask0 .* (mask1 + mask2);
