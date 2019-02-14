@@ -36,7 +36,7 @@ mask_obj = load_nii(mask_name);
 mask1 = double(mask_obj.img);
 mask1 = rot90(mask1);
 % mask of GM from your parcellation
-mask2 = atlas0;
+mask2 = atlas;
 mask2(mask2>0) = 1;
 % mask of WM and GM together
 mask = mask0 .* (mask1 + mask2);
@@ -50,7 +50,7 @@ clear mask_obj mask0 mask1 mask2
 % Compute diffusion matrix
 [M, RHSbc] = computeDiffusionMatrix3D(im.*mask, voxel_size);
 sprintf('diffusion matrix computed')
-clear meshstruct im
+clear meshstruct
 
 % Compute currents per ROI
 im_size = size(im);
