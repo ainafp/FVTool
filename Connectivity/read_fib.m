@@ -48,8 +48,6 @@ tensor(:,:,:,3,1) = reshape(fib.txz,fib.dimension);
 tensor(:,:,:,3,2) = reshape(fib.tyz,fib.dimension);
 tensor(:,:,:,3,3) = reshape(fib.tzz,fib.dimension);
 
-odf_vertices = fib.odf_vertices;
-odf_faces = fib.odf_faces;
 voxel_size = fib.voxel_size;
-%delete(strcat(name,'.mat'));
+
 end
