@@ -11,12 +11,12 @@
 % Alternatively, you could generate your own tensors and load them as
 % im = (im_x, im_y, tensor_x, tensor_y)
 folder = 'your_folder';
-file_name = fullfile(folder, '/Fibercup/data.src.gz.012fz.dti.fib.gz'); 
+file_name = fullfile(folder, 'data.nii.gz.src.gz.012fz.dti.fib.gz'); 
 [fa0, md, im0, voxel_size] = read_fib(file_name);
 
 % Choose to use the whole image '0' (default), a medium size image '1' 
 % or a small size image '2'
-image_size = 0;
+image_size = 2;
 
 % Load the image you chose, with its corresponding FA map
 % We are here removing one dimension a bit roughly, only for testing
@@ -27,7 +27,7 @@ elseif image_size==1
 else
     ax = 1:size(im0,1); ay = 1:size(im0,2);
 end
-im = squeeze(im0(ax, ay, 2, 1:2, 1:2));
+im = squeeze(im0(ax, ay, 2, [1, 2, 4]));
 fa = fa0(ax, ay, 2);
 
 % Compute conductance and plot it interactively

@@ -14,6 +14,6 @@ md = load_nii(fullfile(folder, [basename '_MD.nii.gz']));
 md = md.img;
 I = load_nii(fullfile(folder, [basename '_tensor.nii.gz']));
 tensor = I.img;
-voxel_size = I.hdr.dime.pixdim;
+voxel_size = I.hdr.dime.pixdim(2:4);
 
 end

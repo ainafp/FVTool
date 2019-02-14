@@ -7,7 +7,7 @@ function [xvalue, yvalue] = extendBoundaryTensor2D(im)
 
 Nx = size(im, 1); % number of cells
 Ny = size(im, 2); % number of cells
-Tx = size(im, 3); % size tensor
+Tx = 2;           % size tensor
 
 % Extend image
 xvalue = zeros(Nx + 2, Ny + 2, Tx);

@@ -8,7 +8,7 @@ function [xvalue, yvalue, zvalue] = extendBoundaryTensor3D(im)
 Nx = size(im, 1); % number of cells
 Ny = size(im, 2); % number of cells
 Nz = size(im, 3); % number of cells
-Tx = size(im, 4); % size tensor
+Tx = 3;           % size tensor
 
 % Extend image
 xvalue = zeros(Nx + 2, Ny + 2, Nz + 2, Tx);
