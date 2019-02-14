@@ -13,17 +13,7 @@ fa = fa.img;
 md = load_nii(fullfile(folder, [basename '_MD.nii.gz']));
 md = md.img;
 I = load_nii(fullfile(folder, [basename '_tensor.nii.gz']));
-im = I.img;
+tensor = I.img;
 voxel_size = I.hdr.dime.pixdim;
-
-tensor(:,:,:,1,1) = im(:,:,:,1); % xx
-tensor(:,:,:,1,2) = im(:,:,:,2); % xy
-tensor(:,:,:,1,3) = im(:,:,:,3); % xz
-tensor(:,:,:,2,1) = im(:,:,:,2); % xy
-tensor(:,:,:,2,2) = im(:,:,:,4); % yy
-tensor(:,:,:,2,3) = im(:,:,:,5); % yz
-tensor(:,:,:,3,1) = im(:,:,:,3); % xz
-tensor(:,:,:,3,2) = im(:,:,:,5); % yz
-tensor(:,:,:,3,3) = im(:,:,:,6); % zz
 
 end

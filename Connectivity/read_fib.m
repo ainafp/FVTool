@@ -38,15 +38,12 @@ for i = 1:max_fib
     eval(strcat('md(:,:,:,i) = reshape(fib.md,fib.dimension);'));
 end
 
-tensor(:,:,:,1,1) = reshape(fib.txx,fib.dimension);
-tensor(:,:,:,1,2) = reshape(fib.txy,fib.dimension);
-tensor(:,:,:,1,3) = reshape(fib.txz,fib.dimension);
-tensor(:,:,:,2,1) = reshape(fib.txy,fib.dimension);
-tensor(:,:,:,2,2) = reshape(fib.tyy,fib.dimension);
-tensor(:,:,:,2,3) = reshape(fib.tyz,fib.dimension);
-tensor(:,:,:,3,1) = reshape(fib.txz,fib.dimension);
-tensor(:,:,:,3,2) = reshape(fib.tyz,fib.dimension);
-tensor(:,:,:,3,3) = reshape(fib.tzz,fib.dimension);
+tensor(:,:,:,1) = reshape(fib.txx,fib.dimension);
+tensor(:,:,:,2) = reshape(fib.txy,fib.dimension);
+tensor(:,:,:,3) = reshape(fib.txz,fib.dimension);
+tensor(:,:,:,4) = reshape(fib.tyy,fib.dimension);
+tensor(:,:,:,5) = reshape(fib.tyz,fib.dimension);
+tensor(:,:,:,6) = reshape(fib.tzz,fib.dimension);
 
 voxel_size = fib.voxel_size;
 
