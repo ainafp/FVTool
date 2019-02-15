@@ -32,12 +32,10 @@ file_name = fullfile(your_folder, 'data.nii.gz.src.gz.012fz.dti.fib.gz');
 ```
 or the data processed with Diffusion Toolkit:
 ```
-file_name = fullfile(your_folder, ''); 
 [fa0, im0, voxel_size] = read_tensors_dt(your_folder, 'dti')
 ```
 or the data processed with FSL:
 ```
-file_name = fullfile(your_folder, ''); 
 [fa0, md, im0, voxel_size] = read_tensors_fsl(your_folder, 'dtifit_output')
 ```
 It takes a while to run, so you may want to try it with small parts of the image. The default image_size '0' loads the whole image, but you can load a 5x5 image setting image_size to '2' or a 20x21 image setting image_size to '1'.
