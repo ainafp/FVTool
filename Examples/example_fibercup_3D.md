@@ -30,7 +30,7 @@ elseif image_size==1
 else
     ax = 1:size(im0,1); ay = 1:size(im0,2);
 end
-im = squeeze(im0(ax, ay, :, :, :));
+im = squeeze(im0(ax, ay, :, :));
 fa = fa0(ax, ay, :);
 ```
 
