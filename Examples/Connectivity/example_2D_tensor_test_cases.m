@@ -45,7 +45,7 @@ for x=1:imx
     end
 end
 im(10,10,:,:) = [1, 0; 0, 1];
-fa = sum(sum(im,4),3); 
+fa = sum(sum(im,4),3);
 
 % Compute
 [meshstruct, D, M, RHSbc] = computeDiffusionMatrix2D(im, [imx, imy]);
@@ -63,8 +63,7 @@ for x=1:imx
     end
 end
 im(10,10,:,:) = [1, 0; 0, 1];
-im = im + eps;
-fa = sum(sum(im,4),3); 
+fa = max(sum(im,4),3); 
 
 % Compute
 [meshstruct, D, M, RHSbc] = computeDiffusionMatrix2D(im, [imx, imy]);
