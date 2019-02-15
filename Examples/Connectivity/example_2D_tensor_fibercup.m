@@ -11,7 +11,7 @@
 % Alternatively, you could generate your own tensors and load them as
 % im = (im_x, im_y, tensor_x, tensor_y)
 folder = 'your_folder';
-file_name = fullfile(folder, '/Fibercup/data.src.gz.012fz.dti.fib.gz'); 
+file_name = fullfile(folder, 'data.src.gz.012fz.dti.fib.gz'); 
 [fa0, md, im0, voxel_size] = read_fib(file_name);
 
 % Choose to use the whole image '0' (default), a medium size image '1' 
@@ -35,4 +35,6 @@ Nx = size(im, 1);
 Ny = size(im, 2); 
 [meshstruct, D, M, RHSbc] = computeDiffusionMatrix2D(im, size(im));
 [potentials, mask_index] = computePotentials2D(D, meshstruct, M, RHSbc);
+
+% Plot conductance interactively
 interactiveConductance2D(fa, [Nx, Ny], potentials, mask_index);
