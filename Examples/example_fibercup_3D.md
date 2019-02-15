@@ -2,12 +2,12 @@
 
 Code in [Examples/Connectivity/example_3D_tensor_fibercup.m](Connectivity/example_3D_tensor_fibercup.m)
 
-### Download the data
+#### Download the data
 
 Data can be downloaded from [www.tractometer.org](http://www.tractometer.org/original_fibercup/data/).
 In this example, we use the file [acq-averaged_b-1500.nii.gz](http://www.tractometer.org/downloads/downloads/fibercup/dwi/acq-averaged_b-1500.nii.gz)
 
-### Compute the tensors
+#### Compute the tensors
 
 First we need to compute the tensors. You can compute them from the DWI data and load them as a volume of dimensions (im_x, im_y, im_z, tensor_x, tensor_y). If you prefer to load the tensors computed with a software, you compute them first.
 
@@ -23,7 +23,7 @@ The tensors, plotted here with DSI Studio, look like
 <img src="Images/fibercup.png" width="300">
 </p>
 
-### Load the tensors
+#### Load the tensors
 
 With the code provided, load in Matlab the data processed with DSI Studio: 
 ```
@@ -54,7 +54,7 @@ im = squeeze(im0(ax, ay, :, :, :));
 fa = fa0(ax, ay, :);
 ```
 
-### Compute the potentials and plot the conductance
+#### Compute the potentials and plot the conductance
 
 Now run this code to compute the potentials following the DWI tensors. This computation takes a while!
 ```
