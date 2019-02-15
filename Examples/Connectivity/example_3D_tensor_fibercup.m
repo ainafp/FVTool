@@ -38,5 +38,7 @@ Nz = size(im, 3);
 [potentials, mask_index] = computePotentials3D(D, meshstruct, M, RHSbc);
 
 % Plot conductance interactively
-interactiveConductance3Dslice(fa, [Nx,Ny,Nz], potentials, mask_index, 3, 2);
+dimension = 3;
+slice = 2; 
+interactiveConductance3Dslice(fa, [Nx,Ny,Nz], potentials, mask_index, dimension, slice);
 
