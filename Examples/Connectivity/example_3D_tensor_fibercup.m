@@ -9,7 +9,7 @@
 %dsi_studio_run --action=rec --source=data.src.gz --mask=nodif_brain_mask.nii.gz --method=1 --output_tensor=1 --output_dif=1 --output=data.src.gz.012fy.dti.fib.gz';
 
 % Alternatively, you could generate your own tensors and load them as
-% im = (im_x, im_y, im_z, tensor_x, tensor_y)
+% im = (im_x, im_y, im_z, tensor)
 folder = 'your_folder';
 file_name = fullfile(folder, 'data.nii.gz.src.gz.012fz.dti.fib.gz'); 
 [fa0, md, im0, voxel_size] = read_fib(file_name);
