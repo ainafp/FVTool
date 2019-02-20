@@ -1,4 +1,4 @@
-function interactiveConductance3Droi(fa, mask, atlas, dim_size, potentials, dim, slice)
+function interactiveConductance3Droi(fa, mask, atlas, dim_size, potentials, dim, slice, max_limit)
 % Interactive conductance map
 %
 % Author: Aina Frau-Pascual
@@ -39,8 +39,8 @@ for i=1:100
     else
         a1 = slice; b1 = round(x); c1 = round(y);
     end
-    roi0 = atlas(a1, b1, c1)
-    roi1 = find(roi_list==roi0)
+    roi0 = atlas(a1, b1, c1);
+    roi1 = find(roi_list==roi0);
     roi_list
     size(roi_list)
     
@@ -67,12 +67,8 @@ for i=1:100
     end
     
     jet0 = jet;
-    jet0(1,:) = [ 1 1 1 ]; 
-    max_limit = 0.005;
-    aux = c.*mask0;
-    aux(aux>0) = 1;
-    figure(105); imagesc((c.*mask0)'); colormap(cubehelix); colorbar; caxis([0 max_limit]); 
-    figure(106); imagesc((mask0)'); colormap(jet0); colorbar; caxis([0 max_limit]); 
-    figure(107); imagesc((aux)'); colormap(jet0); colorbar; caxis([0 max_limit]); 
+    jet0(1,:) = [ 1 1 1 ]; % for white background
+    %max_limit = 0.02;
+    figure(105); imagesc((c.*mask0)'); colormap(jet); colorbar; caxis([0 max_limit]); 
 end
 
